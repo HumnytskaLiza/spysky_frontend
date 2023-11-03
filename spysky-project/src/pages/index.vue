@@ -3,51 +3,6 @@
 </template>
 
 <script setup>
-//   import * as THREE from 'three';
-//   import { ref, onMounted } from 'vue';
-//   import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
-
-//   const scene = new THREE.Scene();
-//   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-//   //const camera = new THREE.PerspectiveCamera(35, sceneWidth / sceneHeight, 1, 20000);
-//   camera.position.set(0,100,0);
-//   camera.lookAt(scene.position);
-//   scene.add(camera);
-//   let renderer;
-
-  
-
-  
-
-// let loader = new OBJLoader();
-
-// loader.load( 'A_10.obj' , function ( object ) {
-
-// 	scene.add( object );
-
-// }, undefined, function ( error ) {
-
-// 	console.error( error );
-
-// } );
-
-
-// const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
-// directionalLight.position.set(0, 1, 0);
-// scene.add(directionalLight);
-
-// camera.position.z = 5;
-
-// onMounted(() => {
-//     renderer = new THREE.WebGLRenderer({
-//       canvas: document.querySelector('#canvas'),
-//       antialias: true,
-//     });
-//     renderer.setSize(window.innerWidth, window.innerHeight);
-//     renderer.render(scene, camera);
-//   });
-
-
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/OBJLoader.js";
@@ -66,9 +21,6 @@ controls.update();
 
 function init (geometry) { 
   const material = new THREE.MeshStandardMaterial({
-    // color: 0xffffff,
-    // roughness: 0.5,
-    // metalness: 0.5,
     bumpMap: new THREE.TextureLoader().load('textures/Bump_2K.png'),
     map: new THREE.TextureLoader().load('textures/Diffuse_2K.png')
   });
