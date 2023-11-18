@@ -20,7 +20,6 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 // import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import { OBJLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/OBJLoader.js";
-// import { RenderPass } from 
 
 window.addEventListener('load', () => {
   // Define container
@@ -69,26 +68,6 @@ window.addEventListener('load', () => {
     const sunlight = new THREE.DirectionalLight(0xffffff);
     sunlight.position.y = 2;
     scene.add(sunlight);
-
-    // const spotLight = new THREE.SpotLight( 0x2E52E8 );
-    // spotLight.position.set( 0, 100, -100 );
-
-    // spotLight.castShadow = true;
-    // spotLight.target = mesh;
-
-    // spotLight.shadow.mapSize.width = 1024;
-    // spotLight.shadow.mapSize.height = 1024;
-
-    // spotLight.shadow.camera.near = 500;
-    // spotLight.shadow.camera.far = 4000;
-    // spotLight.shadow.camera.fov = 30;
-
-    // scene.add( spotLight );
-
-    // const filllight = new THREE.DirectionalLight(0x88ccff);
-    // filllight.position.x = 1;
-    // filllight.position.y = -2;
-    // scene.add(filllight);
 
     function animate() {
       requestAnimationFrame(animate);
