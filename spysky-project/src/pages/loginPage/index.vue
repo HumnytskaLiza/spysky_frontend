@@ -17,76 +17,104 @@
 </template>
 
 <script setup>
+// Import Three.js library
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
-// import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
-import { OBJLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/OBJLoader.js";
+
+import gsap from 'gsap';
+
+// Import shaders
+import vertexShader from "../../assets/shaders-folder/vertex.glsl";
+import fragmentShader from "../../assets/shaders-folder/fragment.glsl";
+import atmosphereVertexShader from "../../assets/shaders-folder/atmosphereVertex.glsl";
+import atmosphereFragmentShader from "../../assets/shaders-folder/atmosphereFragment.glsl";
 
 window.addEventListener('load', () => {
-  // Define container
-  const container = document.getElementById('model-container');
+    // Define container
+    const container = document.getElementById('model-container');
 
-  // Add style parameters to container
-  container.style.width = "100vw";
-  container.style.height = "100vh";
-  container.style.overflow = "hidden";
-  container.style.position = "absolute";
-  container.style.top = "0";
-  container.style.left = "0";
-  container.style.zIndex = "-100";
-  
-  // Get width and height for a scene
-  const w = container.offsetWidth;
-  const h = container.offsetHeight;
+    // Add style parameters to container
+    container.style.width = "100vw";
+    container.style.height = "100vh";
+    container.style.position = "absolute";
+    container.style.overflow = "hidden";
+    container.style.top = "0";
+    container.style.left = "0";
 
-  // Add scene
-  const scene = new THREE.Scene();
-  const backgroundTexture = new THREE.TextureLoader().load('src/assets/background-textures/8k_stars_milky_way.jpg');
-  scene.background = backgroundTexture;
+    // Get width and height for a scene
+    const w = container.offsetWidth;
+    const h = container.offsetHeight;
 
-  // Add camera 
-  const camera = new THREE.PerspectiveCamera(40, w / h, 0.1, 1000);
-  camera.position.z = 5;
+    // Add scene
+    const scene = new THREE.Scene();
+    const backgroundTexture = new THREE.TextureLoader().load('src/assets/background-textures/bg.png');
+    scene.background = backgroundTexture;
 
-  // Add renderer
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(w, h);
-  container.appendChild(renderer.domElement);
+    // Add camera 
+    const camera = new THREE.PerspectiveCamera(50, w / h, 0.1, 1000);
+    camera.position.z = 10;
 
-  // // Add controls
-  // const controls = new OrbitControls(camera, renderer.domElement);
-  // controls.update();
-
-  function init (geometry) { 
-    const material = new THREE.MeshStandardMaterial({
-      bumpMap: new THREE.TextureLoader().load('src/assets/textures/Bump_2K.png'),
-      map: new THREE.TextureLoader().load('src/assets/textures/Diffuse_2K.png')
+    // Add renderer
+    const renderer = new THREE.WebGLRenderer({
+        antialias: true
     });
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.y = -3;
-    scene.add(mesh);
+    renderer.setSize(w, h);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
 
-    const sunlight = new THREE.DirectionalLight(0xffffff);
-    sunlight.position.y = 2;
-    scene.add(sunlight);
+    // Create Earth texture
+    const material = new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms: {
+            globeTexture: {
+                value: new THREE.TextureLoader().load('src/assets/textures/daymap.jpg')
+            }
+        }
+    });
+
+    // Add sphere
+    const sphere = new THREE.Mesh(new THREE.SphereGeometry(7, 50, 50), material)
+
+    // Create atmosphere material
+    const material_atmosphere = new THREE.ShaderMaterial({
+        vertexShader: atmosphereVertexShader,
+        fragmentShader: atmosphereFragmentShader,
+        blending: THREE.AdditiveBlending,
+        side: THREE.BackSide
+    });
+
+    // Add atmosphere
+    const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(7, 50, 50), material_atmosphere)
+    atmosphere.scale.set(1.05, 1.05, 1.05);
+    
+    const group = new THREE.Group();
+    group.add(sphere);  
+    group.add(atmosphere); 
+    scene.add(group);
+    
+    group.position.y = -7;
 
     function animate() {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+        sphere.rotation.y += 0.002;
     }
     animate();
-  }
 
-  const loader = new OBJLoader();
-  loader.load("src/assets/3d-models/Earth_2K.obj", (obj) => init(obj.children[0].geometry) );
+    function handleWindowResize () {
+        const newWidth = window.innerWidth;
+        const newHeight = window.innerHeight;
 
-  function handleWindowResize () {
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
-  }
+        container.style.width = `${newWidth}px`;
+        container.style.height = `${newHeight}px`;
+        renderer.setSize(newWidth, newHeight);
 
-  window.addEventListener('resize', handleWindowResize, false);
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+    }
 
+    window.addEventListener('resize', handleWindowResize, false);
+    handleWindowResize();
 });
 </script>
 
@@ -107,6 +135,8 @@ window.addEventListener('load', () => {
   }
 
   #form-container {
+    position: relative;
+    z-index: 1000;
     width: 55%;
     height: 70%;
     border-radius: 5px;
