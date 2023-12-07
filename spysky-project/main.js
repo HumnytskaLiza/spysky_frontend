@@ -8,6 +8,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 // Import components
 import login from './src/pages/loginPage/index.vue';
 import signup from './src/pages/signupPage/index.vue';
+import welcome from './src/pages/welcomePage/index.vue';
 import home from './src/pages/homePage/index.vue';
 
 // Define routes
@@ -22,7 +23,11 @@ const routes = [
   },
   {
     path: '/',
-    component: home, 
+    component: welcome, 
+  },
+  {
+    path: '/home',
+    component: home,
   },
 ];
 

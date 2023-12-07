@@ -1,29 +1,43 @@
 <template>
-  <div id="overlay">
+  <div id="overlay-login">
     <router-link to="/">
-        <button id="back-button" class="button">Return back</button>
+        <button id="back-button">Return back</button>
     </router-link>
-    <div id="form-container">
+    <div id="form-container-login">
       <div id="log-header">Log in</div>
       <form>
         <div>
-          <input type="text" id="email" name="email" placeholder="Email"><br>
+          <input type="text" id="email" placeholder="Email" required>
         </div>
         <div>
-          <input type="password" id="password" name="password" placeholder="Password"><br>
+          <div class="password-input">
+            <input type="password" id="password" placeholder="Password" required>
+            <img src="../../assets/icons/eye.svg">
+          </div>
           <div id="link-container"><a href="#" id="forgot-password">Forgot password?</a></div>
         </div>
-        <input type="submit" value="Log in" class="button" id="login-button">
-        <div id="socials">
-          <button class="button" id="google">
-            <img src="../../assets/icons/google.svg" alt="google">
-          </button>
-          <button class="button" id="facebook">
-            <img src="../../assets/icons/facebook.svg" alt="facebook">
-          </button>
-          <button class="button" id="apple">
-            <img src="../../assets/icons/apple.svg" alt="apple">
-          </button>
+        <div class="buttons">
+          <router-link to="/home" id="no-underline-login">
+            <input type="submit" value="Log in" id="login-button">
+          </router-link>
+          <div id="socials">
+            <button id="google">
+              <img src="../../assets/icons/google.svg" alt="google">
+            </button>
+            <button id="facebook">
+              <img src="../../assets/icons/facebook.svg" alt="facebook">
+            </button>
+            <button id="apple">
+              <img src="../../assets/icons/apple.svg" alt="apple">
+            </button>
+          </div>
+        </div>
+        <div id="signup-link-container">
+          <p id="signup-link">Don't have an account? 
+            <router-link to="/signup" id="no-underline-login">
+              <span>Sign up</span>
+            </router-link>
+          </p>
         </div>
       </form>
     </div>
@@ -36,7 +50,7 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 
 // Import hooks
-import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, ref } from "vue";
+import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
 
 // Import shaders
 import vertexShader from "../../assets/shaders-folder/vertex.glsl";
@@ -207,7 +221,11 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-#overlay {
+#no-underline-login {
+  text-decoration: none;
+}
+
+#overlay-login {
   z-index: 10000;
   display: flex;
   justify-content: center;
@@ -217,50 +235,26 @@ onBeforeUnmount(() => {
   overflow: hidden;
 }
 
-#overlay div > input {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px solid #FFF;
-  width: 100%;
-  padding-bottom: 5px;
-  outline: none;
+#overlay-login div > input::placeholder {
+  color: white;
 }
 
-#overlay div > input::placeholder {
-  color: #FFF;
-}
-
-#back-button {
+#overlay-login #back-button {
   position: absolute;
   top: 20px;
   left: 20px;
   z-index: 1000;
-}
-
-.button {
   font-size: 15px;
-  font-family: 'Exo 2', sans-serif;
-  color: white;
   padding: 10px 20px;
-  border: 0;
-  border-radius: 8px;
-  background: rgba(255, 121, 0, 0.82);
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
-  cursor: pointer;
-  transition: 0.5s;
   width: fit-content;
 }
 
-#login-button {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#form-container {
+#form-container-login {
   position: relative;
   z-index: 1000;
   width: 55%;
-  height: 70%;
+  box-sizing: border-box;
+  padding: 60px 0;
   border-radius: 5px;
   background: rgba(89, 96, 133, 0.50);
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.17);
@@ -269,59 +263,138 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 70px;
+  gap: 65px;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
 }
 
-#form-container form {
+#form-container-login form {
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: 65px;
+  width: 70%;
 }
 
-#socials {
+#form-container-login #login-button {
   display: flex;
-  flex-direction: row;
-  gap: 50px;
-}
-
-#socials img {
-  height: 40px;
-}
-
-#socials button,
-#login-button {
-  padding: 13px 60px;
-}
-
-#log-header {
-  color: #FFF;
-  font-family: 'Exo 2', sans-serif;
-  font-size: 64px;
-  font-style: normal;
+  padding: 0 70px;
+  height: 70px;
+  font-size: 36px;
   font-weight: 500;
 }
 
-#form-container form input,
-#form-container form label {
-  color: #FFF;
+#overlay-login #back-button, 
+#form-container-login #login-button {
+  border-radius: 8px;
+  background: rgba(255, 121, 0, 0.82);
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
+  color: white;
+  transition: 0.5s;
   font-family: 'Exo 2', sans-serif;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 400;
+  cursor: pointer;
+  border: 0;
 }
 
-#link-container {
+#form-container-login .buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+  justify-content: center;
+}
+
+#form-container-login #socials {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+
+#form-container-login #socials button {
+  padding: 0px 30px;
+  border-radius: 8px;
+  background: rgba(20, 53, 117, 0.82);
+  box-shadow: 0px 4px 16px 1px rgba(0, 0, 0, 0.17);
+  display: flex;
+  align-items: center;
+  height: 70px;
+  cursor: pointer;
+  transition: 0.5s;
+  border: 0;
+}
+
+#form-container-login #login-button:hover {
+  background-color: #C73814;
+  box-shadow: 0px 0px 10px 1px rgba(138, 164, 218, 0.562);
+}
+
+#form-container-login #socials button:hover {
+  background-color: #172183;
+  box-shadow: 0px 0px 10px 1px rgba(138, 164, 218, 0.562);
+}
+
+#form-container-login #socials img {
+  height: 30px;
+}
+
+#form-container-login #log-header {
+  font-size: 48px;
+  font-weight: 500;
+}
+
+#form-container-login form .password-input input,
+#form-container-login form #email {
+  font-size: 30px;
+  font-weight: 400;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid white;
+  width: 100%;
+  padding-bottom: 5px;
+  outline: none;
+}
+
+#form-container-login #link-container {
   width: 100%;
   text-align: end;
   margin-top: 20px;
 }
 
 #forgot-password {
-  color: #FFF;
-  font-family: 'Exo 2', sans-serif;
   font-size: 20px;
-  font-style: normal;
   font-weight: 400;
   text-decoration: none;
+}
+
+#signup-link {
+  font-size: 24px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+#signup-link-container {
+  width: 100%;
+  text-align: center;
+}
+
+#signup-link-container span {
+  color: #FF7900;
+  font-weight: 700;
+}
+
+#form-container-login .password-input {
+  position: relative;
+}
+
+#form-container-login .password-input img{
+  position: absolute;
+  right: 0;
+  bottom: 6px;
+  filter: invert(100%);
+  width: 32px;
+}
+
+#form-container-login #forgot-password {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
 }
 </style>
