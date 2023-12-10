@@ -1,7 +1,6 @@
 #app {
     width: 100vw;
-    height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 * {
@@ -10,5 +9,22 @@
 }
 
 body {
-    overflow: hidden;
+    overflow-x: hidden;
 }
+
+::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgb(0, 0, 0, 1);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgb(41, 41, 41);
+    border-radius: 3px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(56, 56, 56);
+  }
