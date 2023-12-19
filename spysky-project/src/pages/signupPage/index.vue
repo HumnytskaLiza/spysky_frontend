@@ -1,8 +1,20 @@
 <template>
   <div id="overlay-signup">
-    <router-link to="/">
-        <button id="back-button">Return back</button>
-    </router-link>
+    <div id="signup-page-navbar">
+      <router-link to="/">
+        <div id="logo"><a href=""><img src="../../assets/icons/logo_s.svg" alt=""></a></div>
+      </router-link>
+      <ul>
+        <router-link to="/login" id="no-underline-signup">
+          <li>Log in</li>
+        </router-link>
+        <router-link to="/signup" id="bold-text-signup">
+          <li>Sign up</li>
+        </router-link>
+        <li>About Us</li>
+        <li>Our Team</li>
+      </ul>
+    </div>
     <div id="form-container-signup">
       <div id="signup-header">Sign up</div>
       <form id="form-first" v-if="currentPage === 'page1'">
@@ -256,6 +268,7 @@ onBeforeUnmount(() => {
 <style>
 #no-underline-signup {
   text-decoration: none;
+  color: white;
 }
 
 #overlay-signup {
@@ -270,16 +283,6 @@ onBeforeUnmount(() => {
 
 #overlay-signup div > input::placeholder {
   color: white;
-}
-
-#overlay-signup #back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-  font-size: 15px;
-  padding: 10px 20px;
-  width: fit-content;
 }
 
 #form-container-signup {
@@ -314,13 +317,12 @@ onBeforeUnmount(() => {
   display: flex;
   padding: 0 70px;
   height: 70px;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 500;
   justify-content: center;
   align-items: center;
 }
 
-#overlay-signup #back-button, 
 #overlay-signup #back,
 #form-container-signup #next-button,
 #form-container-signup #signup-button {
@@ -354,7 +356,7 @@ onBeforeUnmount(() => {
 }
 
 #form-container-signup #signup-header {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 500;
 }
 
@@ -363,13 +365,15 @@ onBeforeUnmount(() => {
 #form-container-signup #country,
 #form-container-signup .password-input input,
 #form-container-signup #email {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: 400;
   background-color: transparent;
   border: 0;
   border-bottom: 2px solid white;
+  line-height: 150%;
   width: 100%;
   outline: none;
+  color: white;
 }
 
 #form-container-signup .password-input {
@@ -381,7 +385,7 @@ onBeforeUnmount(() => {
   right: 0;
   bottom: 6px;
   filter: invert(100%);
-  width: 32px;
+  width: 25px;
 }
 
 #form-container-signup .name-inputs {
@@ -450,6 +454,42 @@ onBeforeUnmount(() => {
 
 #login-link-container span {
   color: #FF7900;
+  font-weight: 700;
+}
+
+#signup-page-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  z-index: 10000;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 120px;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+}
+
+#signup-page-navbar #logo img {
+  height: 25px;
+}
+
+#signup-page-navbar ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 3rem;
+}
+
+#bold-text-signup {
+  text-decoration: none;
+  color: rgba(255, 121, 0, 1);
   font-weight: 700;
 }
 </style>
