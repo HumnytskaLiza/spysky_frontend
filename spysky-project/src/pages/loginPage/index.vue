@@ -1,8 +1,20 @@
 <template>
   <div id="overlay-login">
-    <router-link to="/">
-        <button id="back-button">Return back</button>
-    </router-link>
+    <div id="login-page-navbar">
+      <router-link to="/">
+        <div id="logo"><a href=""><img src="../../assets/icons/logo_s.svg" alt=""></a></div>
+      </router-link>
+      <ul>
+        <router-link to="/login" id="bold-text-login">
+          <li>Log in</li>
+        </router-link>
+        <router-link to="/signup" id="no-underline-login">
+          <li>Sign up</li>
+        </router-link>
+        <li>About Us</li>
+        <li>Our Team</li>
+      </ul>
+    </div>
     <div id="form-container-login">
       <div id="log-header">Log in</div>
       <form>
@@ -223,6 +235,7 @@ onBeforeUnmount(() => {
 <style>
 #no-underline-login {
   text-decoration: none;
+  color: white;
 }
 
 #overlay-login {
@@ -237,16 +250,6 @@ onBeforeUnmount(() => {
 
 #overlay-login div > input::placeholder {
   color: white;
-}
-
-#overlay-login #back-button {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-  font-size: 15px;
-  padding: 10px 20px;
-  width: fit-content;
 }
 
 #form-container-login {
@@ -279,11 +282,10 @@ onBeforeUnmount(() => {
   display: flex;
   padding: 0 70px;
   height: 70px;
-  font-size: 36px;
+  font-size: 24px;
   font-weight: 500;
 }
 
-#overlay-login #back-button, 
 #form-container-login #login-button {
   border-radius: 8px;
   background: rgba(255, 121, 0, 0.82);
@@ -336,13 +338,13 @@ onBeforeUnmount(() => {
 }
 
 #form-container-login #log-header {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 500;
 }
 
 #form-container-login form .password-input input,
 #form-container-login form #email {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: 400;
   background-color: transparent;
   border: 0;
@@ -350,6 +352,8 @@ onBeforeUnmount(() => {
   width: 100%;
   padding-bottom: 5px;
   outline: none;
+  line-height: 150%;
+  color: white;
 }
 
 #form-container-login #link-container {
@@ -389,12 +393,47 @@ onBeforeUnmount(() => {
   right: 0;
   bottom: 6px;
   filter: invert(100%);
-  width: 32px;
+  width: 25px;
 }
 
 #form-container-login #forgot-password {
   color: white;
   font-size: 24px;
+}
+
+#login-page-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+  z-index: 10000;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
+  padding: 0 120px;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+}
+
+#login-page-navbar #logo img {
+  height: 25px;
+}
+
+#login-page-navbar ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  gap: 3rem;
+}
+
+#bold-text-login {
   font-weight: 700;
+  text-decoration: none;
+  color: rgba(255, 121, 0, 1);
 }
 </style>

@@ -6,13 +6,10 @@
         <router-link to="/login" id="no-underline-welcome">
           <li>Log in</li>
         </router-link>
-        <li><b>|</b></li>
         <router-link to="/signup" id="no-underline-welcome">
           <li>Sign up</li>
         </router-link>
-        <li><b>|</b></li>
         <li>About Us</li>
-        <li><b>|</b></li>
         <li>Our Team</li>
       </ul>
     </div>
@@ -66,10 +63,25 @@
         </p>
       </div>
     </div>
-    <div id="our-team-block">
+    <!-- <div id="our-team-block">
       <div class="block-count">02.</div>
       <p class="header-mid">Our Team</p>
-    </div>
+    </div> -->
+    <footer id="welcome-page-footer">
+      <div id="footer-logo"><a href="#"><img src="../../assets/icons/logo_s.svg"></a></div>
+      <ul>
+        <router-link to="/login" id="no-underline-welcome">
+          <li>Log in</li>
+        </router-link>
+        <router-link to="/signup" id="no-underline-welcome">
+          <li>Sign up</li>
+        </router-link>
+        <li>About Us</li>
+        <li>Our Team</li>
+      </ul>
+      <hr />
+      <p>© 2023 SpySky</p>
+    </footer>
   </div>
 </template>
   
@@ -312,7 +324,38 @@ onBeforeUnmount(() => {
   display: flex;
   flex-direction: row;
   list-style: none;
+  gap: 3rem;
+  border-radius: 1px;
+}
+
+#welcome-page-footer {
+  width: 100%;
+  z-index: 10000;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 40px;
+  padding: 60px 0;
+}
+
+#welcome-page-footer ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
   gap: 2.5rem;
+  font-size: 20px;
+}
+
+#welcome-page-footer hr {
+  width: 100%;
+  opacity: 50%;
+}
+
+#welcome-page-footer #footer-logo img {
+  height: 35px;
 }
 
 #welcome-block {
