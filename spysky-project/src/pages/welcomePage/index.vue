@@ -1,18 +1,31 @@
 <template>
   <div id="welcome-page-container">
-    <div id="welcome-page-navbar">
+
+    <!--============================= NAVIGATION BAR =============================-->
+
+    <div id="navbar">
         <div id="logo"><a href=""><img src="../../assets/icons/logo_s.svg" alt=""></a></div>
       <ul>
-        <router-link to="/login" id="no-underline-welcome">
-          <li>Log in</li>
-        </router-link>
-        <router-link to="/signup" id="no-underline-welcome">
-          <li>Sign up</li>
-        </router-link>
-        <li>About Us</li>
-        <li>Our Team</li>
+        <div class="nav-links">
+          <li>About Us</li>
+          <li>Our Mission</li>
+          <li>SpySKy Team</li>
+          <li>Pricing</li>
+          <li>Contacts</li>
+        </div>
+        <div class="nav-buttons">
+          <router-link to="/login" id="no-underline">
+            <button id="fill">Log in</button>
+          </router-link>
+          <router-link to="/signup" id="no-underline">
+            <button id="stroke">Sign up</button>
+          </router-link>
+        </div>
       </ul>
     </div>
+
+    <!--============================= WELCOME BLOCK =============================-->
+
     <div id="welcome-block">
       <div id="welcome-overlay">
         <div><img id="asteroid1" src="../../assets/background-textures/asteroid1.png"></div>
@@ -24,18 +37,25 @@
               SpySky is all about. We watch satellites and space junk really closely,
                and we share all that info with space agencies, big companies, and 
               anyone who loves space.</p>
+              <div class="nasa-data">
+                <img src="../../assets/icons/nasa_logo.png" alt="nasa-logo">
+                <p>Based on NASA open data</p>
+              </div>
             <div class="welcome-buttons">
-                <router-link to="/login">
-                    <button>Login</button>
+                <router-link to="/login" id="no-underline">
+                    <button id="fill">Login</button>
                 </router-link>
-                <router-link to="/signup">
-                    <button>Sign up</button>
+                <router-link to="/signup" id="no-underline">
+                    <button id="stroke">Sign up</button>
                 </router-link>
             </div>
         </div>
       </div>
       <div id="model-container-welcome" ref="containerWelcome"></div>
     </div>
+
+    <!--============================= ABOUT US BLOCK =============================-->
+
     <div id="about-us-block">
       <div id="left-side">
         <div id="black-cover"></div>
@@ -45,7 +65,10 @@
       </div>
       <div id="right-side">
         <div class="block-count">01.</div>
-        <p class="header-mid">About Us</p>
+        <div class="header-container">
+          <p class="header-mid">About Us</p>
+          <img src="../../assets/icons/about-us.png" alt="about-us-logo">
+        </div>
         <p>
           Our main goal is to stop problems in Space. 
           SpySky isn't just about keeping satellites safe; 
@@ -63,17 +86,202 @@
         </p>
       </div>
     </div>
-    <!-- <div id="our-team-block">
-      <div class="block-count">02.</div>
-      <p class="header-mid">Our Team</p>
-    </div> -->
-    <footer id="welcome-page-footer">
+
+    <!--============================= OUR MISSION BLOCK =============================-->
+
+    <div id="our-mission-block">
+      <div class="block-header">
+        <div class="block-count">02.</div>
+        <div class="header-container">
+            <p class="header-mid">Our mission</p>
+            <img src="../../assets/icons/our-mission.png" alt="our-mission-logo">
+        </div>
+        <p>
+          SpySky team is a dynamic and collaborative group. With diverse skills and knoledge,
+          we work together seamlessly to achieve excellence and drive innovation in our respective fields.
+        </p>
+      </div>
+      <div class="our-goals">
+        <div id="goal">
+          <div>
+            <div id="billet"></div>
+            <p id="goal-header">Goal 1</p>
+          </div>
+          <p>
+            Our main goal is to stop problems in Space. SpySky isn't just about keeping satellites safe; it's also about taking care of space.
+          </p>
+        </div>
+        <div id="goal">
+          <div>
+            <div id="billet"></div>
+            <p id="goal-header">Goal 2</p>
+          </div>
+          <p>
+            Our main goal is to stop problems in Space. SpySky isn't just about keeping satellites safe; it's also about taking care of space.
+          </p>
+        </div>
+        <div id="goal">
+          <div>
+            <div id="billet"></div>
+            <p id="goal-header">Goal 3</p>
+          </div>
+          <p>
+            Our main goal is to stop problems in Space. SpySky isn't just about keeping satellites safe; it's also about taking care of space.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--============================= QUOTE BLOCK =============================-->
+
+    <div id="quote-block">
+      <div></div>
+      <div>
+        <p>“That's one small step for a man, one giant leap for mankind.”</p>
+        <p>- Neil Armstrong</p>
+      </div>
+    </div>
+
+    <!--============================= SPYSKY TEAM BLOCK =============================-->
+
+    <div id="our-team-block">
+      <div class="block-header">
+        <div class="block-count">03.</div>
+        <div class="header-container">
+            <p class="header-mid">SpySky team</p>
+            <img src="../../assets/icons/spysky-team.png" alt="spysky-team-logo">
+        </div>
+        <p>
+          SpySky team is a dynamic and collaborative group. With diverse skills and knoledge,
+          we work together seamlessly to achieve excellence and drive innovation in our respective fields.
+        </p>
+      </div>
+      <div class="team-cards">
+        <div>
+          <img class="member-photo" src="../../assets/background-textures/temp.png" alt="member-photo">
+          <div class="square">
+            <img src="../../assets/icons/pc.svg" alt="pc">
+          </div>
+          <div class="member-info">
+            <p class="team-role">Designer</p>
+            <p class="member-name">Darina Mamokina</p>
+          </div>
+        </div>
+        <div>
+          <img class="member-photo" src="../../assets/background-textures/temp.png" alt="member-photo">
+          <div class="square">
+            <img src="../../assets/icons/pc.svg" alt="pc">
+          </div>
+          <div class="member-info">
+            <p class="team-role">Front-end developer</p>
+            <p class="member-name">Liza Humnytska</p>
+          </div>
+        </div>
+        <div>
+          <img class="member-photo" src="../../assets/background-textures/temp.png" alt="member-photo">
+          <div class="square">
+            <img src="../../assets/icons/pc.svg" alt="pc">
+          </div>
+          <div class="member-info">
+            <p class="team-role">Back-end developer</p>
+            <p class="member-name">Wertikmarsik</p>
+          </div>
+        </div>
+        <div>
+          <img class="member-photo" src="../../assets/background-textures/temp.png" alt="member-photo">
+          <div class="square">
+            <img src="../../assets/icons/pc.svg" alt="pc">
+          </div>
+          <div class="member-info">
+            <p class="team-role">Project manager</p>
+            <p class="member-name">Taras Hmaruk</p>
+          </div>
+        </div>
+        <div>
+          <img class="member-photo" src="../../assets/background-textures/temp.png" alt="member-photo">
+          <div class="square">
+            <img src="../../assets/icons/pc.svg" alt="pc">
+          </div>
+          <div class="member-info">
+            <p class="team-role">Data Engineer</p>
+            <p class="member-name">Oleksandr Prosimyak</p>
+          </div>
+        </div>
+        <div>
+          <img class="member-photo" src="../../assets/background-textures/temp.png" alt="member-photo">
+          <div class="square">
+            <img src="../../assets/icons/pc.svg" alt="pc">
+          </div>
+          <div class="member-info">
+            <p class="team-role">Machine Learning Engineer</p>
+            <p class="member-name">Kahados</p>
+          </div>
+        </div>        
+      </div>
+    </div>
+
+    <!--============================= PRICING BLOCK =============================-->
+
+    <div class="pricing-block">
+      <div class="block-header">
+        <div class="block-count">04.</div>
+        <div class="header-container">
+            <p class="header-mid">Pricing</p>
+            <img src="../../assets/icons/pricing.png" alt="pricing-logo">
+        </div>
+        <p>
+          SpySky team is a dynamic and collaborative group. With diverse skills and knoledge,
+          we work together seamlessly to achieve excellence and drive innovation in our respective fields.
+        </p>
+      </div>
+      <div class="subscription-cards">
+        <div>
+          <img src="../../assets/icons/free-subscription.svg" alt="free-logo">
+          <p>Demo version</p>
+          <p>Basic version with minimum of functions</p>
+          <p>free</p>
+          <button>Get subscription</button>
+        </div>
+        <div>
+          <img src="../../assets/icons/paid-subscription.svg" alt="paid-logo">
+          <p>Development version</p>
+          <p>All functions and code included</p>
+          <p>10 $</p>
+          <button>Get subscription</button>
+        </div>
+      </div>
+    </div>
+
+    <!--============================= CONTACT US BLOCK =============================-->
+
+    <div id="contact-us-block">
+      <div class="block-header">
+        <div class="block-count">05.</div>
+        <div class="header-container">
+            <p class="header-mid">Contact us</p>
+            <img src="../../assets/icons/contact-info.png" alt="contacts-logo">
+        </div>
+        <p>
+          Contact us via our mail address@gmail.com if you have any questions. Also, sign up for updates.
+        </p>
+        <div id="short-form">
+          <form>
+            <input type="text">
+            <input type="submit">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!--============================= FOOTER =============================-->
+
+    <footer id="footer">
       <div id="footer-logo"><a href="#"><img src="../../assets/icons/logo_s.svg"></a></div>
       <ul>
-        <router-link to="/login" id="no-underline-welcome">
+        <router-link to="/login" id="no-underline">
           <li>Log in</li>
         </router-link>
-        <router-link to="/signup" id="no-underline-welcome">
+        <router-link to="/signup" id="no-underline">
           <li>Sign up</li>
         </router-link>
         <li>About Us</li>
@@ -284,10 +492,7 @@ onBeforeUnmount(() => {
 </script>
   
 <style>
-#no-underline-welcome {
-  text-decoration: none;
-  color: white;
-}
+/*===================== CONTAINERS ===========================*/
 
 #welcome-page-container {
   width: 100vw;
@@ -295,162 +500,138 @@ onBeforeUnmount(() => {
   color: white;
   font-family: 'Exo 2', sans-serif;
   box-sizing: border-box;
-  padding: 0 120px;
+  padding: 0 200px;
   background-color: black;
 }
 
-#welcome-page-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  z-index: 10000;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%);
-  backdrop-filter: blur(6px);
+/*===================== GENERAL STYLES ================================*/
+
+.block-count {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #FFC8C2;
+}
+
+.header-mid {
+  font-size: 2.25rem;
+  line-height: 130%;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.header-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
   align-items: center;
-  padding: 0 120px;
+  gap: 1rem;
 }
 
-#welcome-page-navbar #logo img {
-  height: 25px;
+.header-container img {
+  height: 40px;
 }
 
-#welcome-page-navbar ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  gap: 3rem;
-  border-radius: 1px;
-}
-
-#welcome-page-footer {
-  width: 100%;
-  z-index: 10000;
-  background-color: black;
+.block-header {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  text-align: center;
   align-items: center;
-  box-sizing: border-box;
-  gap: 40px;
-  padding: 60px 0;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 1.5rem;
+  font-size: 18px;
+  line-height: 150%;
 }
 
-#welcome-page-footer ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  gap: 2.5rem;
-  font-size: 20px;
-}
-
-#welcome-page-footer hr {
-  width: 100%;
-  opacity: 50%;
-}
-
-#welcome-page-footer #footer-logo img {
-  height: 35px;
-}
+/*=================== WELCOME OVERLAY BLOCK ===============================*/
 
 #welcome-block {
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
 }
 
-#welcome-page-container #about-us-block {
-  width: 100%;
-  height: 80vh;
-  padding: 70px 0;
-  box-sizing: border-box;
-  font-size: 18px;
+#welcome-overlay {
+    position: relative;
+    z-index: 100;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 40%;
+}
+
+#welcome-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+#welcome-nav p {
+  width: 80%;
   line-height: 150%;
+  font-size: 18px;
+}
+
+#welcome-nav #header {
+    font-size: 48px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+#welcome-overlay .welcome-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 20px;
+}
+
+#welcome-overlay .welcome-buttons button {
+    font-size: 20px;
+    font-family: 'Exo 2', sans-serif;
+    color: white;
+    height: 50px;
+    padding: 0 25px;
+    border: 0;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
+    cursor: pointer;
+    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#welcome-overlay .welcome-buttons #fill {
+  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
+}
+
+#welcome-overlay .welcome-buttons #stroke {
+  border: 3px solid #003B72;
+  background: none;
+}
+
+#welcome-overlay .welcome-buttons #stroke {
+  background-color: black;
+}
+
+#welcome-overlay .welcome-buttons button:hover {
+    background-color: #C73814;
+    box-shadow: 0px 0px 8.8px 7px rgba(0, 20, 45, 0.85);
+}
+
+#welcome-overlay .nasa-data {
   display: flex;
   flex-direction: row;
-  gap: 10%;
-}
-
-#welcome-page-container #about-us-block div {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-#welcome-page-container #about-us-block #left-side {
-  width: 55%;
-  position: relative;
-  display: flex;
-}
-
-#welcome-page-container #about-us-block #black-cover {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(270deg, #D9D9D9 -1.11%, rgba(0, 0, 0, 0.93) -1.1%, rgba(0, 0, 0, 0.00) 100%);
-  z-index: 500;
-}
-
-
-#welcome-page-container #about-us-block #junk1 {
-  position: absolute;
-  width: 350px;
-  bottom: 0;
-  right: 40%;
-}
-
-#welcome-page-container #about-us-block #junk2 {
-  position: absolute;
-  left: 5%;
-  width: 250px;
-  top: 0;
-}
-
-#welcome-page-container #about-us-block #astronaut {
-  position: absolute;
-  width: 550px;
-  right: 0;
-  transition: 1s;
-  z-index: 1000;
-}
-
-#welcome-page-container #about-us-block #astronaut:hover {
-  right: 2%;
-  transform: rotate(5deg);
-}
-
-#welcome-page-container #about-us-block #right-side {
-  width: 45%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-#welcome-page-container .block-count {
-  font-weight: 700;
-  font-size: 48px;
-  margin-bottom: 20px;
-  color: rgba(255, 121, 0, 1);
-}
-
-#welcome-page-container .header-mid {
-  font-size: 36px;
-  line-height: 130%;
-  font-weight: 700;
-}
-
-#welcome-page-container #our-team-block {
-  display: flex;
-  flex-direction: column;
+  gap: 0.5rem;
   align-items: center;
-  box-sizing: border-box;
-  padding-bottom: 50px;
 }
+
+#welcome-overlay .nasa-data img {
+  height: 40px;
+}
+
+/*==================== ASTEROIDS ========================*/
 
 #welcome-overlay #asteroid1 {
   position: absolute;
@@ -494,57 +675,140 @@ onBeforeUnmount(() => {
   right: -10%;
 }
 
-#welcome-overlay {
-    position: relative;
-    z-index: 100;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    width: 40%;
-}
+/*==================== ABOUT US BLOCK ==============================*/
 
-#welcome-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-#welcome-nav p {
-  width: 80%;
-  line-height: 150%;
+#welcome-page-container #about-us-block {
+  width: 100%;
+  height: 80vh;
+  padding: 70px 0;
+  box-sizing: border-box;
   font-size: 18px;
+  line-height: 150%;
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
 }
 
-#welcome-nav #header {
-    font-size: 48px;
-    font-weight: 700;
-    text-transform: uppercase;
+#welcome-page-container #about-us-block > div {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
 }
 
-#welcome-overlay .welcome-buttons {
-    margin-top: 10px;
-    display: flex;
-    gap: 20px;
+#welcome-page-container #about-us-block #left-side {
+  width: 55%;
+  position: relative;
+  display: flex;
 }
 
-#welcome-overlay .welcome-buttons button {
-    font-size: 20px;
-    font-family: 'Exo 2', sans-serif;
-    color: white;
-    padding: 10px 20px;
-    border: 0;
-    border-radius: 8px;
-    background: rgba(255, 121, 0, 0.82);
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
-    cursor: pointer;
-    transition: 0.5s;
+#welcome-page-container #about-us-block #black-cover {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(270deg, #D9D9D9 -1.11%, rgba(0, 0, 0, 0.93) -1.1%, rgba(0, 0, 0, 0.00) 100%);
+  z-index: 500;
 }
 
-#welcome-overlay .welcome-buttons button:hover {
-    background-color: #C73814;
-    box-shadow: 0px 0px 10px 1px rgba(138, 164, 218, 0.562);
+#welcome-page-container #about-us-block #junk1 {
+  position: absolute;
+  width: 350px;
+  bottom: 0;
+  right: 40%;
+}
+
+#welcome-page-container #about-us-block #junk2 {
+  position: absolute;
+  left: 5%;
+  width: 250px;
+  top: 0;
+}
+
+#welcome-page-container #about-us-block #astronaut {
+  position: absolute;
+  width: 550px;
+  right: 0;
+  transition: 1s;
+  z-index: 1000;
+}
+
+#welcome-page-container #about-us-block #astronaut:hover {
+  right: 2%;
+  transform: rotate(5deg);
+}
+
+#welcome-page-container #about-us-block #right-side {
+  width: 45%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/*======================== OUR MISSION BLOCK ================================*/
+
+#our-mission-block .our-goals {
+  width: 40%;
+  text-align: left;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+/*============================= QUOTE BLOCK ====================================*/
+
+#quote-block {
+  color: white;
+}
+
+/*=========================== SPYSKY TEAM =======================================*/
+
+.team-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  column-gap: 5rem;
+  row-gap: 6rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.team-cards > div {
+  border-radius: 0.5rem;
+  border: 4px solid var(--Purple, #003B72);
+}
+
+.team-cards > div .member-photo {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.member-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.team-role {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+.member-name {
+  font-size: 1.125rem;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+/*============================= PRICING BLOCK ===================================*/
+
+/*============================= CONTACT US BLOCK ===================================*/
+
+#contact-us-block {
+  width: 100%;
+  background-image: url("../../assets/background-textures/contact-bg.png");
+  height: 100%;
+  background-size: cover;
 }
 
 </style>

@@ -1,18 +1,25 @@
 <template>
   <div id="overlay-login">
-    <div id="login-page-navbar">
+    <div id="navbar">
       <router-link to="/">
-        <div id="logo"><a href=""><img src="../../assets/icons/logo_s.svg" alt=""></a></div>
+        <div id="logo"><img src="../../assets/icons/logo_s.svg" alt=""></div>
       </router-link>
       <ul>
-        <router-link to="/login" id="bold-text-login">
-          <li>Log in</li>
-        </router-link>
-        <router-link to="/signup" id="no-underline-login">
-          <li>Sign up</li>
-        </router-link>
-        <li>About Us</li>
-        <li>Our Team</li>
+        <div class="nav-links">
+          <li>About Us</li>
+          <li>Our Mission</li>
+          <li>SpySky Team</li>
+          <li>Pricing</li>
+          <li>Contacts</li>
+        </div>
+        <div class="nav-buttons">
+          <router-link to="/login" id="no-underlin">
+            <button id="fill">Log in</button>
+          </router-link>
+          <router-link to="/signup" id="no-underline">
+            <button id="stroke">Sign up</button>
+          </router-link>
+        </div>
       </ul>
     </div>
     <div id="form-container-login">
@@ -29,7 +36,7 @@
           <div id="link-container"><a href="#" id="forgot-password">Forgot password?</a></div>
         </div>
         <div class="buttons">
-          <router-link to="/home" id="no-underline-login">
+          <router-link to="/home" id="no-underline">
             <input type="submit" value="Log in" id="login-button">
           </router-link>
           <div id="socials">
@@ -46,7 +53,7 @@
         </div>
         <div id="signup-link-container">
           <p id="signup-link">Don't have an account? 
-            <router-link to="/signup" id="no-underline-login">
+            <router-link to="/signup" id="no-underline">
               <span>Sign up</span>
             </router-link>
           </p>
@@ -233,11 +240,6 @@ onBeforeUnmount(() => {
 </script>
 
 <style>
-#no-underline-login {
-  text-decoration: none;
-  color: white;
-}
-
 #overlay-login {
   z-index: 10000;
   display: flex;
@@ -399,36 +401,6 @@ onBeforeUnmount(() => {
 #form-container-login #forgot-password {
   color: white;
   font-size: 24px;
-}
-
-#login-page-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  z-index: 10000;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%);
-  backdrop-filter: blur(6px);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
-  align-items: center;
-  padding: 0 120px;
-  color: white;
-  font-family: 'Exo 2', sans-serif;
-}
-
-#login-page-navbar #logo img {
-  height: 25px;
-}
-
-#login-page-navbar ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  gap: 3rem;
 }
 
 #bold-text-login {
