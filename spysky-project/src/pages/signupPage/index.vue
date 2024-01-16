@@ -294,7 +294,7 @@ onBeforeUnmount(() => {
   box-sizing: border-box;
   padding: 60px 0;
   border-radius: 5px;
-  background: rgba(89, 96, 133, 0.50);
+  background: rgba(27, 65, 100, 0.6);
   box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.17);
   backdrop-filter: blur(8px);
   display: flex;
@@ -329,7 +329,7 @@ onBeforeUnmount(() => {
 #form-container-signup #next-button,
 #form-container-signup #signup-button {
   border-radius: 8px;
-  background: rgba(255, 121, 0, 0.82);
+  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
   box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
   color: white;
   transition: 0.5s;

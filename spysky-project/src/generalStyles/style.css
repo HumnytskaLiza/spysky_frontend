@@ -94,6 +94,11 @@ background: rgb(56, 56, 56);
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.5s;
+}
+
+#navbar .nav-buttons button:hover {
+  box-shadow: 0px 0px 8.8px 7px rgba(3, 48, 104, 0.39);
 }
 
 #navbar .nav-buttons #fill {
