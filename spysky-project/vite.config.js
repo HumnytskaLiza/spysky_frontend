@@ -5,5 +5,8 @@ export default {
   plugins: [
     Vue(),
     vitePluginString()
-  ]
+  ],
+  optimizeDeps: {
+    exclude: ['node:test/reporters']
+  }
 }

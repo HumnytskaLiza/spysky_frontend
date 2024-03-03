@@ -3,6 +3,7 @@
 #app {
   width: 100vw;
   overflow-x: hidden;
+  background-color: black;
 }
 
 * {
@@ -12,6 +13,86 @@
 
 body {
   overflow-x: hidden;
+}
+
+
+/*===================== GENERAL STYLES ================================*/
+
+.block-count {
+  font-weight: 700;
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #FFC8C2;
+}
+
+.header-mid {
+  font-size: 2.25rem;
+  line-height: 130%;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-container img {
+  height: 40px;
+}
+
+.block-header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 1.5rem;
+  font-size: 18px;
+  line-height: 150%;
+}
+
+.fill {
+  background-color: #054A8B;
+  border: 0;
+  padding: 10px 25px;
+}
+
+.stroke {
+  border: 3px solid #054A8B;
+  background: none;
+  padding: 4px 25px;
+}
+
+button {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  line-height: 150%;
+  border-radius: 8px;
+  color: white;
+  transition: 0.5s;
+  font-family: 'Exo 2', sans-serif;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 10px 0 rgba(27, 74, 143, 0.8);
+}
+
+.fill:hover {
+  background-color: #053C72;
+}
+
+.stroke:hover {
+  border: 3px solid #053C72;
 }
 
 /*====================== SCROLLBAR ==================================*/
@@ -33,97 +114,17 @@ border-radius: 3px;
 background: rgb(56, 56, 56);
 }
 
-/*======================== NAVIGATION BAR ===========================*/
-
-#navbar {
-  font-size: 1rem;
-  color: white;
-  font-family: 'Exo 2', sans-serif;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  z-index: 10000;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%);
-  backdrop-filter: blur(6px);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
-  align-items: center;
-  padding: 0 200px;
-}
-
-#navbar #logo img {
-  height: 25px;
-}
-
-#navbar ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  gap: 3rem;
-  align-items: center;
-}
-
-#navbar ul .nav-links {
-  display: flex;
-  flex-direction: row;
-  gap: 2.25rem;
-  align-items: center;
-}
-
-#navbar .nav-buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 1.25rem;
-}
-
-#navbar .nav-buttons button {
-  font-size: 20px;
-  font-family: 'Exo 2', sans-serif;
-  color: white;
-  height: 50px;
-  padding: 0 25px;
-  border: 0;
-  border-radius: 8px;
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
-  cursor: pointer;
-  transition: 0.5s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.5s;
-}
-
-#navbar .nav-buttons button:hover {
-  box-shadow: 0px 0px 8.8px 7px rgba(3, 48, 104, 0.39);
-}
-
-#navbar .nav-buttons #fill {
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
-}
-
-#navbar .nav-buttons #stroke {
-  border: 3px solid #003B72;
-  background: none;
-}
-
-#navbar ul li, 
-#navbar .nav-buttons button {
-  font-size: 1rem;
-}
-
-#navbar .nav-buttons button {
-  height: 2.25rem;
-}
 
 /*=============== NO UNDERLINE ===================*/
 
 #no-underline {
   text-decoration: none;
   color: white;
+}
+
+#no-underline.router-link-active {
+  color: #FF8C71;
+  font-weight: 700;
 }
 
 /*=================== FOOTER ===============================*/

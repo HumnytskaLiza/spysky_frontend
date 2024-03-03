@@ -1,28 +1,7 @@
 <template>
   <div id="welcome-page-container">
 
-    <!--============================= NAVIGATION BAR =============================-->
-
-    <div id="navbar">
-        <div id="logo"><a href=""><img src="../../assets/icons/logo_s.svg" alt=""></a></div>
-      <ul>
-        <div class="nav-links">
-          <li>About Us</li>
-          <li>Our Mission</li>
-          <li>SpySKy Team</li>
-          <li>Pricing</li>
-          <li>Contacts</li>
-        </div>
-        <div class="nav-buttons">
-          <router-link to="/login" id="no-underline">
-            <button id="fill">Log in</button>
-          </router-link>
-          <router-link to="/signup" id="no-underline">
-            <button id="stroke">Sign up</button>
-          </router-link>
-        </div>
-      </ul>
-    </div>
+    <Navbar />
 
     <!--============================= WELCOME BLOCK =============================-->
 
@@ -42,16 +21,11 @@
                 <p>Based on NASA open data</p>
               </div>
             <div class="welcome-buttons">
-                <router-link to="/login" id="no-underline">
-                    <button id="fill">Login</button>
-                </router-link>
-                <router-link to="/signup" id="no-underline">
-                    <button id="stroke">Sign up</button>
-                </router-link>
+                    <button id="fill"><img src="../../assets/icons/arrow.svg"> Explore our tools</button>
             </div>
         </div>
       </div>
-      <div id="model-container-welcome" ref="containerWelcome"></div>
+      <planetModel />
     </div>
 
     <!--============================= ABOUT US BLOCK =============================-->
@@ -359,221 +333,25 @@
       </form>
     </div>
 
-    <!--============================= FOOTER =============================-->
+    <Footer />
 
-    <footer id="footer">
-      <div id="footer-logo"><a href="#"><img src="../../assets/icons/logo_s.svg"></a></div>
-      <ul>
-        <router-link to="/login" id="no-underline">
-          <li>Log in</li>
-        </router-link>
-        <router-link to="/signup" id="no-underline">
-          <li>Sign up</li>
-        </router-link>
-        <li>About Us</li>
-        <li>Our Team</li>
-      </ul>
-      <hr />
-      <p>© 2023 SpySky</p>
-    </footer>
   </div>
 </template>
   
-<script setup>
-// Import Three.js library
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
+<script>
 
-// Import hooks
-import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
+import Navbar from "../components/navbar.vue";
+import Footer from "../components/footer.vue";
+import planetModel from "../components/planetScript.vue";
 
-// Import shaders
-import gsap from 'gsap';
-import vertexShader from "../../assets/shaders-folder/vertex.glsl";
-import fragmentShader from "../../assets/shaders-folder/fragment.glsl";
-import atmosphereVertexShader from "../../assets/shaders-folder/atmosphereVertex.glsl";
-import atmosphereFragmentShader from "../../assets/shaders-folder/atmosphereFragment.glsl";
-
-// Init the scene
-const scene = new THREE.Scene();
-
-// Add the model-container to containerWelcome
-const containerWelcome = ref(null);
-
-// Init the camera
-const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 12;
-
-// Init the renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-
-// Add background to the scene
-const backgroundTexture = new THREE.TextureLoader().load('src/assets/background-textures/bg.png');
-scene.background = backgroundTexture;
-
-// --- Creating the Earth ---
-
-// Init an Earth material
-const material = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms: {
-          globeTexture: {
-              value: new THREE.TextureLoader().load('src/assets/textures/daymap.jpg')
-          }
-      }
-  });
-
-const geometry =  new THREE.SphereGeometry(6, 50, 50);
-  
-// Init the Earth
-const sphere = new THREE.Mesh(geometry, material)
-
-// --- Creating the atmosphere
-
-// Init the atmosphere material
-const material_atmosphere = new THREE.ShaderMaterial({
-        vertexShader: atmosphereVertexShader,
-        fragmentShader: atmosphereFragmentShader,
-        blending: THREE.AdditiveBlending,
-        side: THREE.BackSide
-    });
-
-// Init the atmosphere
-const atmosphere = new THREE.Mesh(geometry, material_atmosphere)
-atmosphere.scale.set(1.05, 1.05, 1.05);
-
-// Init a group for models
-const group = new THREE.Group();
-    group.add(sphere);  
-    group.add(atmosphere);     
-    group.position.x = 6.5;
-    group.position.y = 1.3;
-
-// Create mouse obj
-const mouse = {
-        x: 0,
-        y: 0
-};
-
-// Handling window size
-function handleWindowResize () {
-    const newWidth = window.innerWidth;
-    const newHeight = window.innerHeight;
-
-    // Check if model-container exists in containerWelcome
-    if (containerWelcome.value) {
-        containerWelcome.value.style.width = `${newWidth}px`;
-        containerWelcome.value.style.height = `${newHeight}px`;
-        renderer.setSize(newWidth, newHeight);
-        camera.aspect = newWidth / newHeight;
-    }
-
-    camera.updateProjectionMatrix();
+export default {
+  name: "welcomePage",
+  components: {
+    Navbar,
+    Footer,
+    planetModel
+  }
 }
-
-// Call the hook before the component is mounted
-onBeforeMount(() => {
-  window.addEventListener('resize', handleWindowResize);
-
-  // Get mouse coords
-  addEventListener('mousemove', (event) => {
-        mouse.x = (event.clientX / innerWidth) * 2 - 1
-        mouse.y = -(event.clientY / innerHeight) * 2 - 1
-    })
-
-  handleWindowResize();
-})
-
-// Call the hook when the component is mounted
-onMounted(() => {
-    // Add container to the ref
-    containerWelcome.value = document.getElementById('model-container-welcome');
-    console.log(containerWelcome.value);
-
-    // Add style parameters to container
-    containerWelcome.value.style.width = "100vw";
-    containerWelcome.value.style.height = "100vh";
-    containerWelcome.value.style.position = "absolute";
-    containerWelcome.value.style.overflow = "hidden";
-    containerWelcome.value.style.top = "0";
-    containerWelcome.value.style.left = "0";
-
-    // Get width and height for a scene
-    const w = containerWelcome.value.offsetWidth;
-    const h = containerWelcome.value.offsetHeight;
-
-    camera.aspect = w/h
-
-    // Add objects to the scene
-    scene.add(group);
-
-    renderer.setSize(w, h);
-    renderer.setPixelRatio(window.devicePixelRatio);
-
-    containerWelcome.value.appendChild(renderer.domElement);
-
-    // Animation
-    function animate() {
-        requestAnimationFrame(animate);
-        renderer.render(scene, camera);
-        sphere.rotation.y += 0.002;
-        group.rotation.y = mouse.x * 0.5;
-        gsap.to(group.rotation, {
-            x: -mouse.y * 0.5,
-            y: mouse.x * 0.5,
-            duration: 2
-        })
-    }
-    animate();
-
-    window.addEventListener('resize', handleWindowResize);
-});
-
-// Call the hook to clear the scene
-onBeforeUnmount(() => {  
-  // Remove all scene objects
-  if (sphere) {
-    if (sphere.material) {
-      sphere.material.dispose();
-    }
-    if (sphere.geometry) {
-      sphere.geometry.dispose();
-    }
-  }
-
-  if (atmosphere) {
-    if (atmosphere.material) {
-      atmosphere.material.dispose();
-    }
-    if (atmosphere.geometry) {
-      atmosphere.geometry.dispose();
-    }
-  }
-
-  scene.remove(group);
-  
-  if (material) {
-    material.dispose();
-  }
-  if (material_atmosphere) {
-    material_atmosphere.dispose();
-  }
-  if (geometry) {
-    geometry.dispose();
-  }
-  if (scene.background) {
-    scene.background.dispose();
-  }
-  if (camera) {
-    scene.remove(camera);
-  }
-
-  renderer.dispose();
-  scene.dispose();
-  
-  containerWelcome.value.removeChild(renderer.domElement);
-  window.removeEventListener('resize', handleWindowResize);
-});
 
 </script>
   
@@ -586,49 +364,10 @@ onBeforeUnmount(() => {
   color: white;
   font-family: 'Exo 2', sans-serif;
   box-sizing: border-box;
-  padding: 0 200px;
+  padding: 0 150px;
   background-color: black;
 }
 
-/*===================== GENERAL STYLES ================================*/
-
-.block-count {
-  font-weight: 700;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  color: #FFC8C2;
-}
-
-.header-mid {
-  font-size: 2.25rem;
-  line-height: 130%;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.header-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-}
-
-.header-container img {
-  height: 40px;
-}
-
-.block-header {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  gap: 1.5rem;
-  font-size: 18px;
-  line-height: 150%;
-}
 
 /*=================== WELCOME OVERLAY BLOCK ===============================*/
 
@@ -688,6 +427,12 @@ onBeforeUnmount(() => {
     align-items: center;
 }
 
+#welcome-overlay .welcome-buttons button img {
+  filter: invert(1);
+  width: 1.5rem;
+  margin-right: 1rem;
+}
+
 #welcome-overlay .welcome-buttons #fill {
   background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
 }
@@ -699,10 +444,6 @@ onBeforeUnmount(() => {
 
 #welcome-overlay .welcome-buttons #stroke {
   background-color: black;
-}
-
-#welcome-overlay .welcome-buttons button:hover {
-  box-shadow: 0px 0px 8.8px 7px rgba(0, 20, 45, 0.85);
 }
 
 #welcome-overlay .nasa-data {
@@ -764,7 +505,7 @@ onBeforeUnmount(() => {
 
 #welcome-page-container #about-us-block {
   width: 100%;
-  height: 60vh;
+  height: fit-content;
   margin: 70px 0;
   box-sizing: border-box;
   font-size: 18px;
@@ -1032,7 +773,7 @@ onBeforeUnmount(() => {
 .team-cards > div .member-photo {
   width: 100%;
   border-radius: 8px;
-  height: 300px;
+  height: 200px;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -1055,7 +796,7 @@ onBeforeUnmount(() => {
 }
 
 .team-cards .all-info {
-  margin: 0 0 2rem 2rem;
+  margin: 0 1.5rem 1.5rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -1085,12 +826,12 @@ onBeforeUnmount(() => {
 
 #dasha {
   background-image: url("../../assets/members/dasha.jpg");
-  background-position: 0px 30%;
+  background-position: 0 30%;
 }
 
 #liza {
   background-image: url("../../assets/members/liza.jpg");
-  background-position: -30px 45%;
+  background-position: 0 45%;
 }
 
 #sviat {
@@ -1099,27 +840,27 @@ onBeforeUnmount(() => {
 
 #taras {
   background-image: url("../../assets/members/taras.jpg");
-  background-position: 0px 45%;
+  background-position: 0 45%;
 }
 
 #maks {
   background-image: url("../../assets/members/maks.jpg");
-  background-position: 0px 75%;
+  background-position: 0 75%;
 }
 
 #oleksandr {
   background-image: url("../../assets/members/oleksandr.jpg");
-  background-position: 0px 45%;
+  background-position: 0 45%;
 }
 
 #anastasia {
   background-image: url("../../assets/members/anastasia.jpg");
-  background-position: -30px 45%;
+  background-position: 0 45%;
 }
 
 #denis {
   background-image: url("../../assets/members/denis.jpg");
-  background-position: -30px 45%;
+  background-position: 0 45%;
 }
 
 /*============================= PRICING BLOCK ===================================*/
@@ -1194,10 +935,6 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   transition: 0.5s;
-}
-
-.subscription-card > div button:hover {
-  box-shadow: 0px 0px 8.8px 7px rgba(0, 30, 66, 0.849);
 }
 
 .subscription-card > div .price-info {
