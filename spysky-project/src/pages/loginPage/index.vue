@@ -20,7 +20,7 @@
         </div>
         
         <div class="buttons">
-          <router-link to="/home" id="no-underline">
+          <router-link to="/" id="no-underline">
             <input type="submit" value="Log in" id="login-button" class="fill">
           </router-link>
           <div id="socials">

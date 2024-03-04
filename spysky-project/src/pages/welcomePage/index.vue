@@ -1,16 +1,16 @@
 <template>
-  <div id="welcome-page-container">
+  <div class="main-container" id="welcome-page">
 
     <Navbar />
 
-    <!--============================= WELCOME BLOCK =============================-->
+    <!--============================= HERO BLOCK =============================-->
 
-    <div id="welcome-block">
-      <div id="welcome-overlay">
+    <div class="hero-container">
+      <div class="hero-overlay">
         <div><img id="asteroid1" src="../../assets/background-textures/asteroid1.png"></div>
         <div><img id="asteroid2" src="../../assets/background-textures/asteroid2.png"></div>
         <div><img id="asteroid3" src="../../assets/background-textures/asteroid3.png"></div>
-        <div id="welcome-nav">
+        <div class="hero-nav">
             <div id="header">Welcome to SpySky</div>
             <p>We dream of a time when space is free from junk, and that's what 
               SpySky is all about. We watch satellites and space junk really closely,
@@ -20,9 +20,7 @@
                 <img src="../../assets/icons/nasa_logo.png" alt="nasa-logo">
                 <p>Based on NASA open data</p>
               </div>
-            <div class="welcome-buttons">
-                    <button id="fill"><img src="../../assets/icons/arrow.svg"> Explore our tools</button>
-            </div>
+              <router-link to="/3d-map" id="no-underline"><button class="fill"><img src="../../assets/icons/arrow.svg"> Explore our tools</button></router-link>
         </div>
       </div>
       <planetModel />
@@ -41,24 +39,19 @@
         <div class="block-count">01.</div>
         <div class="header-container">
           <p class="header-mid">About Us</p>
-          <img src="../../assets/icons/about-us.png" alt="about-us-logo">
+          <img src="../../assets/icons/about-us.svg" alt="about-us-logo">
         </div>
         <p>
-          Our main goal is to stop problems in Space. 
-          SpySky isn't just about keeping satellites safe; 
-          it's also about taking care of space. By watching 
-          space junk, we learn more about how it moves and 
-          what it might do. This helps everyone make smart 
-          choices to keep space clean and safe.
+          The SpySky project allows you to track space debris and detect danger on Earth orbit using NASA open data.
+          Thanks to our system, it is possible to determine the level of danger and accumulation of debris.
         </p>
         <p>
-          SpySky has a smart system that watches and remembers where satellites 
-          and space junk go. We don't just know where they are now, but we also 
-          keep a record of where they've been. Our big list of space info is useful for
-          scientists, students, and space fans who want to know more about 
-          what's up there.
+          Our product will be relevant for those interested in space and astronomy. The visualization of NASA open data 
+          will also help in exploring the Earth and other objects around the Earth. Moreover, it can be helpful for specialists of the space industry.
         </p>
+        <router-link to="/about-us" id="no-underline"><button class="fill">More about us</button></router-link>
       </div>
+
     </div>
 
     <!--============================= OUR MISSION BLOCK =============================-->
@@ -68,12 +61,13 @@
         <div class="block-count">02.</div>
         <div class="header-container">
             <p class="header-mid">Our mission</p>
-            <img src="../../assets/icons/our-mission.png" alt="our-mission-logo">
+            <img src="../../assets/icons/our-mission.svg" alt="our-mission-logo">
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          We give people the opportunity to detect space debris in Earth orbit. 
+          Thanks to our online system, it will be possible to determine the level of danger in orbit. 
         </p>
+        <router-link to="/our-mission" id="no-underline"><button class="fill">More about our goals</button></router-link>
       </div>
       <div class="our-mission-container">
         <div class="our-goals">
@@ -81,12 +75,11 @@
             <div>
               <div>
                 <div id="bullet">
-                  <div></div>
                 </div>
-                <p id="goal-header">Goal 1</p>
+                <p id="goal-header">Space debris tracking</p>
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                We help to track the movement of space debris and visualize areas with the biggest amount of junk and danger.
               </p>
             </div>
           </div>
@@ -94,13 +87,12 @@
             <div>
               <div>
                 <div id="bullet">
-                  <div></div>
                 </div>
-                <p id="goal-header">Goal 2</p>
+                <p id="goal-header">Threats identifying</p>
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                We detect and display unauthorized objects in space to help in identifying possible threats and incorrect maneuvers, 
+                which will allow taking measures to avoid them.
               </p>
             </div>
           </div>
@@ -108,12 +100,11 @@
             <div>
               <div>
                 <div id="bullet">
-                  <div></div>
                 </div>
-                <p id="goal-header">Goal 3</p>
+                <p id="goal-header">Regular Analysis</p>
               </div>
               <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                We ensure the safety of the satellites from space debris by monitoring and analysis of the space debris movement. 
               </p>
             </div>
           </div>
@@ -138,12 +129,13 @@
         <div class="block-count">03.</div>
         <div class="header-container">
             <p class="header-mid">SpySky team</p>
-            <img src="../../assets/icons/spysky-team.png" alt="spysky-team-logo">
+            <img src="../../assets/icons/team.png" alt="spysky-team-logo">
         </div>
         <p>
-          SpySky team is a dynamic and collaborative group. With diverse skills and knoledge,
-          we work together seamlessly to achieve excellence and drive innovation in our respective fields.
+          SpySky team is a dynamic and collaborative group. 
+          With diverse skills and knoledge, we work together seamlessly to achieve excellence and drive innovation in our respective fields.
         </p>
+        <router-link to="/our-team" id="no-underline"><button class="fill">More about our team</button></router-link>
       </div>
       <div class="team-cards">
         <div>
@@ -151,7 +143,7 @@
             <div class="member-photo" id="dasha"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/design.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">Designer</p>
@@ -166,7 +158,7 @@
             <div class="member-photo" id="liza"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/front-end.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">Front-end developer</p>
@@ -181,7 +173,7 @@
             <div class="member-photo" id="sviat"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/back-end.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">Back-end developer</p>
@@ -196,7 +188,7 @@
             <div class="member-photo" id="taras"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/pm.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">Project manager</p>
@@ -211,7 +203,7 @@
             <div class="member-photo" id="oleksandr"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/de.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">Data Engineer</p>
@@ -226,7 +218,7 @@
             <div class="member-photo" id="maks"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/ml.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">ML Engineer</p>
@@ -241,7 +233,7 @@
             <div class="member-photo" id="anastasia"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/mentor-ana.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">Mentor</p>
@@ -256,7 +248,7 @@
             <div class="member-photo" id="denis"></div>
             <div class="all-info">
               <div class="square">
-                <img src="../../assets/icons/pc.svg" alt="pc">
+                <img src="../../assets/icons/mentor-den.svg" alt="pc">
               </div>
               <div class="member-info">
                 <p class="team-role">Mentor</p>
@@ -276,15 +268,14 @@
         <div class="block-count">04.</div>
         <div class="header-container">
             <p class="header-mid">Pricing</p>
-            <img src="../../assets/icons/pricing.png" alt="pricing-logo">
+            <img src="../../assets/icons/pricing.svg" alt="pricing-logo">
         </div>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          The company offers users free access to its online system with limited functionality. 
+          Alternatively, users have the option to subscribe to one of the paid plans to unlock 
+          enhanced features and capabilities.
         </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, ut labore et dolore magna aliqua.
-          Ut ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        </p>
+        <router-link to="/pricing" id="no-underline"><button class="fill">See plans</button></router-link>
       </div>
         <div class="subscription-card">
           <img src="../../assets/background-textures/decor-card.png">
@@ -295,7 +286,7 @@
               <p>Basic version with minimum of functions</p>
               <p>free</p>
             </div>
-            <button>Get subscription</button>
+            <button class="fill">Get subscription</button>
           </div>
         </div>
         <div class="subscription-card">
@@ -307,7 +298,7 @@
               <p>All functions and code included</p>
               <p>10 $</p>
             </div>
-            <button>Get subscription</button>
+            <button class="fill">Get subscription</button>
           </div>
         </div>
     </div>
@@ -319,7 +310,7 @@
         <div class="block-count">05.</div>
         <div class="header-container">
             <p class="header-mid">Contact us</p>
-            <img src="../../assets/icons/contact-info.png" alt="contacts-logo">
+            <img src="../../assets/icons/contacts.svg" alt="contacts-logo">
         </div>
         <p>
           Contact us via our mail address@gmail.com if you have any questions.<br>Also, sign up for updates.
@@ -329,7 +320,7 @@
         <div>
           <input type="text" placeholder="Your email">
         </div>
-        <input type="submit" value="Send">
+        <button class="fill">Send</button>
       </form>
     </div>
 
@@ -356,199 +347,56 @@ export default {
 </script>
   
 <style>
-/*===================== CONTAINERS ===========================*/
-
-#welcome-page-container {
-  width: 100vw;
-  position: relative;
-  color: white;
-  font-family: 'Exo 2', sans-serif;
-  box-sizing: border-box;
-  padding: 0 150px;
-  background-color: black;
-}
-
-
-/*=================== WELCOME OVERLAY BLOCK ===============================*/
-
-#welcome-block {
-  width: 100vw;
-  height: 100vh;
-}
-
-#welcome-overlay {
-    position: relative;
-    z-index: 100;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    box-sizing: border-box;
-    width: 40%;
-}
-
-#welcome-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-#welcome-nav p {
-  width: 80%;
-  line-height: 150%;
-  font-size: 18px;
-}
-
-#welcome-nav #header {
-    font-size: 48px;
-    font-weight: 700;
-    text-transform: uppercase;
-}
-
-#welcome-overlay .welcome-buttons {
-    margin-top: 10px;
-    display: flex;
-    gap: 20px;
-}
-
-#welcome-overlay .welcome-buttons button {
-    font-size: 20px;
-    font-family: 'Exo 2', sans-serif;
-    color: white;
-    height: 50px;
-    padding: 0 25px;
-    border: 0;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
-    cursor: pointer;
-    transition: 0.5s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#welcome-overlay .welcome-buttons button img {
-  filter: invert(1);
-  width: 1.5rem;
-  margin-right: 1rem;
-}
-
-#welcome-overlay .welcome-buttons #fill {
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
-}
-
-#welcome-overlay .welcome-buttons #stroke {
-  border: 3px solid #003B72;
-  background: none;
-}
-
-#welcome-overlay .welcome-buttons #stroke {
-  background-color: black;
-}
-
-#welcome-overlay .nasa-data {
-  display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-#welcome-overlay .nasa-data img {
-  height: 40px;
-}
-
-/*==================== ASTEROIDS ========================*/
-
-#welcome-overlay #asteroid1 {
-  position: absolute;
-  width: 300px;
-  bottom: 5%;
-  right: -10%;
-  transform: rotate(50deg);
-  transition: 2s;
-}
-
-#welcome-overlay #asteroid1:hover {
-  transform: rotate(60deg);
-  right: -15%;
-}
-
-#welcome-overlay #asteroid2 {
-  position: absolute;
-  width: 250px;
-  bottom: 35%;
-  right: -60%;
-  transition: 2s;
-}
-
-#welcome-overlay #asteroid2:hover {
-  transform: rotate(20deg);
-  right: -65%;
-}
-
-#welcome-overlay #asteroid3 {
-  position: absolute;
-  width: 110px;
-  top: 7%;
-  right: -15%;
-  transform: rotate(60deg);
-  transition: 2s;
-}
-
-#welcome-overlay #asteroid3:hover {
-  transform: rotate(50deg);
-  top: 10%;
-  right: -10%;
-}
 
 /*==================== ABOUT US BLOCK ==============================*/
 
-#welcome-page-container #about-us-block {
+#welcome-page #about-us-block {
   width: 100%;
   height: fit-content;
-  margin: 70px 0;
+  margin: 100px 0 150px 0;
   box-sizing: border-box;
   font-size: 18px;
   line-height: 150%;
   display: flex;
   flex-direction: row;
   gap: 10%;
+  position: relative;
 }
 
-#welcome-page-container #about-us-block > div {
+#welcome-page #about-us-block > div {
   display: flex;
   flex-direction: column;
   gap: 25px;
 }
 
-#welcome-page-container #about-us-block #left-side {
-  width: 55%;
+#welcome-page #about-us-block #left-side {
+  width: 50%;
   position: relative;
   display: flex;
 }
 
-#welcome-page-container #about-us-block #black-cover {
+#welcome-page #about-us-block #black-cover {
   width: 100%;
   height: 100%;
   background: linear-gradient(270deg, #D9D9D9 -1.11%, rgba(0, 0, 0, 0.93) -1.1%, rgba(0, 0, 0, 0.00) 100%);
   z-index: 500;
 }
 
-#welcome-page-container #about-us-block #junk1 {
+#welcome-page #about-us-block #junk1 {
   position: absolute;
   width: 300px;
   bottom: 0;
   right: 50%;
 }
 
-#welcome-page-container #about-us-block #junk2 {
+#welcome-page #about-us-block #junk2 {
   position: absolute;
   left: 5%;
   width: 200px;
   top: 0;
 }
 
-#welcome-page-container #about-us-block #astronaut {
+#welcome-page #about-us-block #astronaut {
   position: absolute;
   width: 550px;
   right: 0;
@@ -556,13 +404,13 @@ export default {
   z-index: 1000;
 }
 
-#welcome-page-container #about-us-block #astronaut:hover {
+#welcome-page #about-us-block #astronaut:hover {
   right: 2%;
   transform: rotate(5deg);
 }
 
-#welcome-page-container #about-us-block #right-side {
-  width: 45%;
+#welcome-page #about-us-block #right-side {
+  width: 50%;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -597,11 +445,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(105deg, var(--color1), var(--color2));
+  background-color: #03101F;
   box-sizing: border-box;
   border-radius: 0.5rem;
   padding: 0.25rem;
-  transition: --color1 0.5s, --color2 0.5s, 1s;
+  transition: 1s;
+  cursor: pointer;
 }
 
 #our-mission-block .our-goals #goal > div {
@@ -614,48 +463,29 @@ export default {
   padding: 1.75rem;
 }
 
-@property --color1 {
-  syntax: '<color>';
-  initial-value: #00101F;
-  inherits: false;
-}
-
-@property --color2 {
-  syntax: '<color>';
-  initial-value: #00101F;
-  inherits: false;
-}
-
-
 #our-mission-block .our-goals #goal:hover {
   transform: translate(40px, 0);
-  background: linear-gradient(105deg, var(--color1), var(--color2));
-  transition: --color1 0.5s, --color2 0.5s, 1s;
-}
-
-#our-mission-block .our-goals #goal:hover,
-#our-mission-block .our-goals #goal:hover #bullet div {
-  --color1: #003B72;
-  --color2: #207DD2;
+  background-color: #054A8B;
+  transition: 1s;
 }
 
 #goal #bullet {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
   border-radius: 0.5rem;
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
+  background-color: #03101F;
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 4px solid #054A8B;
+  transition: 1s;
 }
 
-#goal #bullet div {
-  width: calc(1.5rem - 6px);
-  height: calc(1.5rem - 6px);
-  background: linear-gradient(105deg, var(--color1), var(--color2));
-  transition: --color1 0.5s, --color2 0.5s;
-  border-radius: 0.4rem;
+#our-mission-block .our-goals #goal:hover,
+#our-mission-block .our-goals #goal:hover #bullet {
+  background-color: #054A8B;
 }
+
 
 #goal #goal-header {
   font-size: 1.5rem;
@@ -694,7 +524,7 @@ export default {
   display: flex;
   flex-direction: row;
   gap: 3rem;
-  margin: 150px 0;
+  margin: 150px 0 120px 0;
   z-index: 1000;
   position: relative;
 }
@@ -708,22 +538,10 @@ export default {
   align-self: stretch;
   width: 0.75rem;
   border-radius: 1rem;
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
+  background: #054A8B;
 }
 
 /*=========================== SPYSKY TEAM =======================================*/
-
-@property --color3 {
-  syntax: '<color>';
-  initial-value: #003B72;
-  inherits: false;
-}
-
-@property --color4 {
-  syntax: '<color>';
-  initial-value: #207DD2;
-  inherits: false;
-}
 
 #our-team-block {
   margin-bottom: 150px;
@@ -743,22 +561,22 @@ export default {
   box-sizing: border-box;
   width: 100%;
   padding-top: 30px;
+  cursor: pointer;
 }
 
 .team-cards > div {
-  background: linear-gradient(105deg, var(--color3), var(--color4));
+  background-color: #054A8B;
   border-radius: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 4px;
   box-sizing: border-box;
-  transition: --color3 0.5s, --color4 0.5s, 1s;
+  transition: 1s;
 }
 
 .team-cards > div:hover {
-  --color3: #FF8C71;
-  --color4: #FF8C71;
+  background-color: #FF8C71;
   transform: translate(0, -30px);
   box-shadow: 0px 0px 12.8px 0px rgba(255, 140, 113, 0.55);
 }
@@ -884,7 +702,7 @@ export default {
 }
 
 .subscription-card {
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
+  background-color: #054A8B;
   border-radius: 0.5rem;
   justify-content: center;
   align-items: center;
@@ -917,24 +735,6 @@ export default {
 
 .subscription-card > div img {
   height: 4.375rem;
-}
-
-.subscription-card > div button {
-  height: 50px;
-  padding: 0 25px;
-  border-radius: 0.5rem;
-  border: 0;
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
-  box-shadow: 0px 0px 3.8px 0px rgba(0, 0, 0, 0.17);
-  cursor: pointer;
-  color: white;
-  font-size: 20px;
-  font-weight: 600;
-  transition: 0.5s;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.5s;
 }
 
 .subscription-card > div .price-info {
@@ -991,7 +791,7 @@ export default {
 #contact-us-block #short-form > div {
   width: 20rem;
   border-radius: 0.5rem;
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
+  background-color: #054A8B;
 }
 
 #contact-us-block #short-form > div input {
@@ -1017,7 +817,7 @@ export default {
   padding: 0 25px;
   border-radius: 0.5rem;
   border: 0;
-  background: linear-gradient(105deg, #003B72 0%, #207DD2 100%);
+  background-color: #054A8B;
   box-shadow: 0px 0px 3.8px 0px rgba(0, 0, 0, 0.17);
   cursor: pointer;
   color: white;

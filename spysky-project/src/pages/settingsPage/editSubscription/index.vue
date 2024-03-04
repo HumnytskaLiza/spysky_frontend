@@ -48,14 +48,12 @@
   
   #main-container {
     width: 100%;
-    height: 80vh;
-    margin: 100px 0;
+    margin: 130px 0;
     box-sizing: border-box;
     font-size: 18px;
     line-height: 150%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
   }
 
   #subscription-container {

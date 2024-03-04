@@ -18,6 +18,67 @@ body {
 
 /*===================== GENERAL STYLES ================================*/
 
+.hero-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-nav p {
+width: 80%;
+line-height: 150%;
+font-size: 18px;
+}
+
+.hero-nav #header {
+  font-size: 48px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hero-overlay button img {
+filter: invert(1);
+width: 1.5rem;
+margin-right: 1rem;
+}
+
+.hero-overlay .nasa-data {
+display: flex;
+flex-direction: row;
+gap: 0.5rem;
+align-items: center;
+}
+
+.hero-overlay .nasa-data img {
+height: 40px;
+}
+
+.main-container {
+  width: 100vw;
+  position: relative;
+  color: white;
+  font-family: 'Exo 2', sans-serif;
+  box-sizing: border-box;
+  padding: 0 150px;
+  background-color: black;
+}
+
+.hero-container {
+  width: 100vw;
+  height: 100vh;
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 100;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 40%;
+}
+
 .block-count {
   font-weight: 700;
   font-size: 3rem;
@@ -48,7 +109,7 @@ body {
   flex-direction: column;
   text-align: center;
   align-items: center;
-  width: 50%;
+  width: 65%;
   margin-left: auto;
   margin-right: auto;
   gap: 1.5rem;
@@ -81,10 +142,11 @@ button {
   transition: 0.5s;
   font-family: 'Exo 2', sans-serif;
   cursor: pointer;
+  width: fit-content;
 }
 
 button:hover {
-  box-shadow: 0 0 10px 0 rgba(27, 74, 143, 0.8);
+  box-shadow: 0 0 10px 0 rgba(65, 123, 211, 0.8);
 }
 
 .fill:hover {
@@ -93,6 +155,50 @@ button:hover {
 
 .stroke:hover {
   border: 3px solid #053C72;
+}
+
+/*==================== ASTEROIDS ========================*/
+
+.hero-container #asteroid1 {
+  position: absolute;
+  width: 220px;
+  bottom: 5%;
+  right: -10%;
+  transform: rotate(50deg);
+  transition: 2s;
+}
+
+.hero-container #asteroid1:hover {
+  transform: rotate(60deg);
+  right: -15%;
+}
+
+.hero-container #asteroid2 {
+  position: absolute;
+  width: 300px;
+  bottom: 35%;
+  right: -70%;
+  transition: 2s;
+}
+
+.hero-container #asteroid2:hover {
+  transform: rotate(20deg);
+  right: -65%;
+}
+
+.hero-container #asteroid3 {
+  position: absolute;
+  width: 110px;
+  top: 10%;
+  right: -15%;
+  transform: rotate(60deg);
+  transition: 2s;
+}
+
+.hero-container #asteroid3:hover {
+  transform: rotate(50deg);
+  top: 10%;
+  right: -10%;
 }
 
 /*====================== SCROLLBAR ==================================*/
@@ -117,7 +223,8 @@ background: rgb(56, 56, 56);
 
 /*=============== NO UNDERLINE ===================*/
 
-#no-underline {
+#no-underline, 
+#no-underline-footer {
   text-decoration: none;
   color: white;
 }
@@ -158,4 +265,12 @@ background: rgb(56, 56, 56);
 
 #footer #footer-logo img {
   height: 35px;
+}
+
+/*===================== SETTINGS STYLES ================================*/
+
+.settings-header {
+  font-size: 36px;
+  font-weight: 700;
+  text-transform: uppercase;
 }

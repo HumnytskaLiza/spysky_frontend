@@ -37,7 +37,7 @@ export default {
 #left-navbar {
     width: 25%;
     height: 100%;
-    margin-right: 35px;
+    margin-right: 50px;
     padding: 50px 60px 85px 40px;
     border-radius: 0.5rem;
     background-color: #000E1F;
@@ -50,13 +50,14 @@ export default {
     justify-content: space-evenly;
     height: 100%;
     width: 100%;
+    gap: 1.3rem;
   }
 
   #navbar-content div:nth-child(1),
   #navbar-content div:nth-child(3) {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   #navbar-content div:nth-child(5) {

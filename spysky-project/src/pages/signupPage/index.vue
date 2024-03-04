@@ -37,7 +37,7 @@
         </div>
         <div id="login-link-container">
           <p id="login-link">Already have an account? 
-            <router-link to="/login" id="no-underline">
+            <router-link to="/" id="no-underline">
               <span>Log in</span>
             </router-link>
           </p>
@@ -270,4 +270,25 @@ export default {
   color: #FF8C71;
   font-weight: 700;
 }
+
+#signup-button {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+  display: flex;
+  font-size: 20px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  line-height: 150%;
+  border-radius: 8px;
+  color: white;
+  transition: 0.5s;
+  font-family: 'Exo 2', sans-serif;
+  cursor: pointer;
+  width: fit-content;
+}
+
+#signup-button:hover {
+  box-shadow: 0 0 10px 0 rgba(65, 123, 211, 0.8);
+}
+
 </style>
