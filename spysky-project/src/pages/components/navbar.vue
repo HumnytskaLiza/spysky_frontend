@@ -10,24 +10,51 @@
           <router-link to="/3d-map" id="no-underline"><li>Our Tools</li></router-link>
           <router-link to="/contacts" id="no-underline"><li>Contacts</li></router-link>
         </div>
-        <div class="nav-buttons">
+        <!-- <div class="nav-buttons">
           <router-link to="/login" id="no-underline">
             <button class="fill">Log in</button>
           </router-link>
           <router-link to="/signup" id="no-underline">
             <button class="stroke">Sign up</button>
           </router-link>
-          <!-- <div>
+        </div> -->
+        <div class="nav-buttons">
+          <div id="user" @click="showDropdown()">
             <img src="../../assets/icons/test_profile_photo.png" id="user-photo">
-          </div> -->
+          </div>
+        </div>
+        <div id="user-dropdown">
+          <div>
+            <router-link to="/settings" id="no-underline-dropdown">
+              <p>Profile settings</p>
+            </router-link>
+              <p>Dashboard</p>
+          </div>
+          <hr>
+          <div id="logout">
+            <img src="../../assets/icons/log-out.svg" alt="">
+            <div>Log out</div>
+          </div>
         </div>
       </ul>
     </div>
 </template>
 
 <script lang="ts">
+
+
 export default {
-    name: 'Navbar'
+  name: 'Navbar',
+  methods: {
+    showDropdown() {
+      let dropdown = document.getElementById("user-dropdown")
+      if (dropdown.classList.contains("show")) {
+        dropdown.classList.remove("show");
+      } else {
+        dropdown.classList.toggle("show");
+      }
+  }
+},
 }
 </script>
 
@@ -58,6 +85,7 @@ export default {
   
   #navbar #user-photo {
     width: 36px;
+    cursor: pointer;
   }
   
   #navbar ul {
@@ -66,6 +94,7 @@ export default {
     list-style: none;
     gap: 2rem;
     align-items: center;
+    position: relative;
   }
   
   #navbar ul .nav-links {
@@ -99,4 +128,48 @@ export default {
   #navbar ul li:hover {
     color: #FFC8C2;
   }
+
+  #user-dropdown {
+    position: absolute;
+    padding: 30px 70px 45px 30px;
+    background-color: #000E1F;
+    top: 60px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    gap: 30px;
+    border-radius: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  #user-dropdown.show {
+    opacity: 1;
+  }
+
+  #user-dropdown #logout {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  #user-dropdown hr {
+    width: 100%;
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1px;
+  }
+
+  #user-dropdown div {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #no-underline-dropdown {
+    text-decoration: none;
+    color: white;
+  }
+
 </style>

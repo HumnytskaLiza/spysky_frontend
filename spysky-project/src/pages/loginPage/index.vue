@@ -1,6 +1,5 @@
 <template>
   <div id="overlay-login">
-    <Navbar />
 
     <div id="form-container-login">
       <div id="log-header">Log in</div>
@@ -52,13 +51,11 @@
 
 import { ref, onMounted } from "vue";
 
-import Navbar from "../components/navbar.vue";
 import planet2Model from "../components/planet2Script.vue";
 
 export default {
   name: "loginPage",
   components: {
-    Navbar,
     planet2Model,
   },
   setup() {
@@ -80,7 +77,7 @@ export default {
       } else {
         inputRef.type = "password";
       }
-    },
+    }, 
   },
 };
 

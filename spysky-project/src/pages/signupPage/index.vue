@@ -1,6 +1,5 @@
 <template>
   <div id="overlay-signup">
-    <Navbar />
 
     <div id="form-container-signup">
       <div id="signup-header">Sign up</div>
@@ -37,7 +36,7 @@
         </div>
         <div id="login-link-container">
           <p id="login-link">Already have an account? 
-            <router-link to="/" id="no-underline">
+            <router-link to="/login" id="no-underline">
               <span>Log in</span>
             </router-link>
           </p>
@@ -59,7 +58,7 @@
         </div>
         <div class="buttons-second">
           <button id="back" class="stroke" @click.prevent="changePage('page1')">Back</button>
-          <router-link to="/home" id="no-underline">
+          <router-link to="/" id="no-underline">
             <input type="submit" value="Sign up" id="signup-button" class="fill">
           </router-link>
         </div>
@@ -80,13 +79,11 @@
 
 import { ref, onMounted } from "vue";
 
-import Navbar from "../components/navbar.vue";
 import planet2Model from "../components/planet2Script.vue";
 
 export default {
   name: "signupPage",
   components: {
-    Navbar,
     planet2Model,
   },
   setup() {
