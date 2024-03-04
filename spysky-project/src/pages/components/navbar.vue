@@ -64,26 +64,26 @@ export default {
     display: flex;
     flex-direction: row;
     list-style: none;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
   }
   
   #navbar ul .nav-links {
     display: flex;
     flex-direction: row;
-    gap: 2.25rem;
+    gap: 1.5rem;
     align-items: center;
   }
   
   #navbar .nav-buttons {
     display: flex;
     flex-direction: row;
-    gap: 1.25rem;
+    gap: 1rem;
   }
   
   #navbar ul li, 
   #navbar .nav-buttons button {
-    font-size: 1rem;
+    font-size: 14px;
     transition: 0.5s;
     cursor: pointer;
   }

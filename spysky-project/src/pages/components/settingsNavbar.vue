@@ -35,9 +35,8 @@ export default {
 <style>
 
 #left-navbar {
-    width: 25%;
+    width: 300px;
     height: 100%;
-    margin-right: 50px;
     padding: 50px 60px 85px 40px;
     border-radius: 0.5rem;
     background-color: #000E1F;
@@ -93,6 +92,15 @@ export default {
     text-decoration: none;
     color: white;
     list-style: none;
+    transition: 1s;
+  }
+
+  #navbar-content li {
+    transition: 0.5s;
+  }
+
+  #navbar-content li:hover {
+    color: #FFC8C2;
   }
   
   #no.router-link-active {
