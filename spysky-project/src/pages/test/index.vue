@@ -49,7 +49,7 @@ const spaceGeometry = new THREE.SphereGeometry(800, 32, 32);
 const space = new THREE.Mesh(spaceGeometry, spaceMaterial);
 scene.add(space);
 
-const mapEarth = new THREE.TextureLoader().load('src/assets/textures/earth1.png');
+const mapEarth = new THREE.TextureLoader().load('src/assets/textures/earth.png');
 const bump = new THREE.TextureLoader().load('src/assets/textures/bump.png');
 
 const m = new THREE.MeshPhongMaterial({ map: mapEarth, bumpMap: bump, bumpScale: 0.05 });

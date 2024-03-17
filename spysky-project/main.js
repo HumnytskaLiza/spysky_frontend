@@ -15,8 +15,8 @@ import contacts from './src/pages/contactsPage/index.vue';
 import editProfile from './src/pages/settingsPage/editProfile/index.vue';
 import editNotifications from './src/pages/settingsPage/editNotifications/index.vue';
 import editSubscription from './src/pages/settingsPage/editSubscription/index.vue';
-import map from './src/pages/mapPage/index.vue';
-import test from './src/pages/test/index.vue'
+import ourTools from './src/pages/toolsPage/index.vue';
+import map from './src/pages/test/index.vue'
 
 const routes = [
   {
@@ -64,12 +64,12 @@ const routes = [
     component: editSubscription
   },
   {
-    path: '/3d-map',
-    component: map
+    path: '/our-tools',
+    component: ourTools
   },
   {
-    path: '/test',
-    component: test
+    path: '/3d-map',
+    component: map
   }
 ];
 

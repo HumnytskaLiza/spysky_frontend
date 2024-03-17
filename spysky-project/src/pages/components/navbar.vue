@@ -7,7 +7,7 @@
           <router-link to="/our-mission" id="no-underline"><li>Our Mission</li></router-link>
           <router-link to="/our-team" id="no-underline"><li>SpySKy Team</li></router-link>
           <router-link to="/pricing" id="no-underline"><li>Pricing</li></router-link>
-          <router-link to="/3d-map" id="no-underline"><li>Our Tools</li></router-link>
+          <router-link to="/our-tools" id="no-underline"><li>Our Tools</li></router-link>
           <router-link to="/contacts" id="no-underline"><li>Contacts</li></router-link>
         </div>
         <!-- <div class="nav-buttons">
@@ -28,7 +28,10 @@
             <router-link to="/settings" id="no-underline-dropdown">
               <p>Profile settings</p>
             </router-link>
-              <p>Dashboard</p>
+            <router-link to="/test" id="no-underline-dropdown">
+              <p>3D map</p>
+            </router-link>
+            <p>Dashboard</p>
           </div>
           <hr>
           <div id="logout">
