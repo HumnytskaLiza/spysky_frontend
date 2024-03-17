@@ -1,53 +1,42 @@
 <template>
   <div id="overlay-signup">
-    <div id="signup-page-navbar">
-      <router-link to="/">
-        <div id="logo"><a href=""><img src="../../assets/icons/logo_s.svg" alt=""></a></div>
-      </router-link>
-      <ul>
-        <router-link to="/login" id="no-underline-signup">
-          <li>Log in</li>
-        </router-link>
-        <router-link to="/signup" id="bold-text-signup">
-          <li>Sign up</li>
-        </router-link>
-        <li>About Us</li>
-        <li>Our Team</li>
-      </ul>
-    </div>
+
     <div id="form-container-signup">
       <div id="signup-header">Sign up</div>
       <form id="form-first" v-if="currentPage === 'page1'">
-        <div class="name-inputs">
-          <input type="text" id="first-name" placeholder="First name">
-          <input type="text" id="last-name" placeholder="Last name">
-        </div>
         <div>
-          <select id="country">
-            <option value="country-1">Ukraine</option>
-            <option value="country-2">Ukraine</option>
-          </select>
+          <div class="name-inputs">
+            <input type="text" id="first-name" placeholder="First name">
+            <input type="text" id="last-name" placeholder="Last name">
+          </div>
+          <div>
+            <select id="country">
+              <option value="country-1">Ukraine</option>
+              <option value="country-2">Ukraine</option>
+            </select>
+          </div>
+          <div>
+            <input type="tel" id="phone-number" placeholder="Phone number" pattern="+38-[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+          </div>
         </div>
-        <div>
-          <input type="tel" id="phone-number" placeholder="+38-000-000-0000" pattern="+38-[0-9]{3}-[0-9]{3}-[0-9]{4}" required>
-        </div>
+        
         <div class="buttons">
-          <button id="next-button" @click="changePage('page2')">Next</button>
+          <button id="next-button" class="fill" @click.prevent="changePage('page2')">Next</button>
             <div id="socials">
-              <button id="google">
+              <button id="google" class="stroke">
                 <img src="../../assets/icons/google.svg" alt="google">
               </button>
-              <button id="facebook">
+              <button id="facebook" class="stroke">
                 <img src="../../assets/icons/facebook.svg" alt="facebook">
               </button>
-              <button id="apple">
+              <button id="apple" class="stroke">
                 <img src="../../assets/icons/apple.svg" alt="apple">
               </button>
             </div>
         </div>
         <div id="login-link-container">
           <p id="login-link">Already have an account? 
-            <router-link to="/login" id="no-underline-signup">
+            <router-link to="/login" id="no-underline">
               <span>Log in</span>
             </router-link>
           </p>
@@ -55,24 +44,27 @@
       </form>
       <form id="form-second" v-if="currentPage === 'page2'">
         <div>
-          <input type="text" id="email" placeholder="Email">
-        </div>
-        <div class="password-input">
-          <input type="password" id="password" placeholder="Password" required>
-          <img src="../../assets/icons/eye.svg">
-        </div>
-        <div class="password-input">
-          <input type="password" id="password" placeholder="Confirm password" required>
+          <div>
+            <input type="text" id="email" placeholder="Email">
+          </div>
+          <div class="password-input">
+            <input type="password" class="password" ref="input" placeholder="Password" required>
+            <img src="../../assets/icons/eye.svg" @click="changeVisibility('input')">
+          </div>
+          <div class="password-input">
+            <input type="password" class="password" ref="inputConfirm" placeholder="Confirm password" required>
+            <img src="../../assets/icons/eye.svg" @click="changeVisibility('inputConfirm')">
+          </div>
         </div>
         <div class="buttons-second">
-          <button id="back" @click="changePage('page1')">Back</button>
-          <router-link to="/home" id="no-underline-signup">
-            <input type="submit" value="Sign up" id="signup-button">
+          <button id="back" class="stroke" @click.prevent="changePage('page1')">Back</button>
+          <router-link to="/" id="no-underline">
+            <input type="submit" value="Sign up" id="signup-button" class="fill">
           </router-link>
         </div>
         <div id="login-link-container">
           <p id="login-link">Already have an account? 
-            <router-link to="/login" id="no-underline-signup">
+            <router-link to="/login" id="no-underline">
               <span>Log in</span>
             </router-link>
           </p>
@@ -80,197 +72,57 @@
       </form>
     </div>
   </div>
-  <div id="model-container" ref="containerLog"></div>
+  <planet2Model />
 </template>
   
-<script setup>
-// Import Three.js library
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
+<script>
 
-// Import hooks
-import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
+import { ref, onMounted } from "vue";
 
-// Import shaders
-import vertexShader from "../../assets/shaders-folder/vertex.glsl";
-import fragmentShader from "../../assets/shaders-folder/fragment.glsl";
-import atmosphereVertexShader from "../../assets/shaders-folder/atmosphereVertex.glsl";
-import atmosphereFragmentShader from "../../assets/shaders-folder/atmosphereFragment.glsl";
+import planet2Model from "../components/planet2Script.vue";
 
+export default {
+  name: "signupPage",
+  components: {
+    planet2Model,
+  },
+  setup() {
+    const input = ref(null);
+    const inputConfirm = ref(null);
 
-const currentPage = ref('page1');
-
-function changePage(page) {
-  currentPage.value = page;
-}
-
-// Init the scene
-const scene = new THREE.Scene();
-
-// Add the model-container to containerLog
-const containerLog = ref(null);
-
-// Init the camera
-const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 10;
-
-// Init the renderer
-const renderer = new THREE.WebGLRenderer({ antialias: true });
-
-// Add background to the scene
-const backgroundTexture = new THREE.TextureLoader().load('src/assets/background-textures/bg.png');
-scene.background = backgroundTexture;
-
-// --- Creating the Earth ---
-
-// Init an Earth material
-const material = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms: {
-          globeTexture: {
-              value: new THREE.TextureLoader().load('src/assets/textures/daymap.jpg')
-          }
-      }
-  });
-
-const geometry =  new THREE.SphereGeometry(7, 50, 50);
-  
-// Init the Earth
-const sphere = new THREE.Mesh(geometry, material)
-
-// --- Creating the atmosphere
-
-// Init the atmosphere material
-const material_atmosphere = new THREE.ShaderMaterial({
-        vertexShader: atmosphereVertexShader,
-        fragmentShader: atmosphereFragmentShader,
-        blending: THREE.AdditiveBlending,
-        side: THREE.BackSide
+    onMounted(() => {
+      input.value = document.getElementById("password");
+      inputConfirm.value = document.getElementById("confirmPassword");
     });
 
-// Init the atmosphere
-const atmosphere = new THREE.Mesh(geometry, material_atmosphere)
-atmosphere.scale.set(1.05, 1.05, 1.05);
+    return { input, inputConfirm };
+  },
 
-// Init a group for models
-const group = new THREE.Group();
-    group.add(sphere);  
-    group.add(atmosphere);     
-    group.position.y = -7;
+  data() {
+    return {
+      currentPage: ref("page1"),
+    };
+  },
 
-// Handling window size
-function handleWindowResize () {
-    const newWidth = window.innerWidth;
-    const newHeight = window.innerHeight;
+  methods: {
+    changePage(page) {
+      this.currentPage = page;
+    },
 
-    // Check if model-container exists in containerLog
-    if (containerLog.value) {
-      containerLog.value.style.width = `${newWidth}px`;
-      containerLog.value.style.height = `${newHeight}px`;
-      renderer.setSize(newWidth, newHeight);
-      camera.aspect = newWidth / newHeight;
-    }
+    changeVisibility(reference) {
+      const inputRef = this.$refs[reference];
 
-    camera.updateProjectionMatrix();
-}
-
-// Call the hook before the component is mounted
-onBeforeMount(() => {
-  window.addEventListener('resize', handleWindowResize);
-  handleWindowResize();
-})
-
-// Call the hook when the component is mounted
-onMounted(() => {
-  // Add container to the ref
-  containerLog.value = document.getElementById('model-container');
-
-  // Add style parameters to container
-  containerLog.value.style.width = "100vw";
-  containerLog.value.style.height = "100vh";
-  containerLog.value.style.position = "absolute";
-  containerLog.value.style.overflow = "hidden";
-  containerLog.value.style.top = "0";
-  containerLog.value.style.left = "0";
-
-  // Get width and height for a scene
-  const w = containerLog.value.offsetWidth;
-  const h = containerLog.value.offsetHeight;
-
-  camera.aspect = w/h
-
-  // Add objects to the scene
-  scene.add(group);
-
-  renderer.setSize(w, h);
-  renderer.setPixelRatio(window.devicePixelRatio);
-
-  containerLog.value.appendChild(renderer.domElement);
-
-  function animate() {
-    requestAnimationFrame(animate);
-    renderer.render(scene, camera);
-    sphere.rotation.y += 0.002;
-  }
-  animate();
-
-  window.addEventListener('resize', handleWindowResize);
-});
-
-// Call the hook to clear the scene
-onBeforeUnmount(() => {  
-  // Remove all scene objects
-  if (sphere) {
-    if (sphere.material) {
-      sphere.material.dispose();
-    }
-    if (sphere.geometry) {
-      sphere.geometry.dispose();
-    }
-  }
-
-  if (atmosphere) {
-    if (atmosphere.material) {
-      atmosphere.material.dispose();
-    }
-    if (atmosphere.geometry) {
-      atmosphere.geometry.dispose();
-    }
-  }
-
-  scene.remove(group);
-  
-  if (material) {
-    material.dispose();
-  }
-  if (material_atmosphere) {
-    material_atmosphere.dispose();
-  }
-  if (geometry) {
-    geometry.dispose();
-  }
-  if (scene.background) {
-    scene.background.dispose();
-  }
-  if (camera) {
-    scene.remove(camera);
-  }
-
-  renderer.dispose();
-  scene.dispose();
-  
-  containerLog.value.removeChild(renderer.domElement);
-  window.removeEventListener('resize', handleWindowResize);
-});
-
+      if (inputRef.type === "password") {
+        inputRef.type = "text";
+      } else {
+        inputRef.type = "password";
+      }
+    },
+  },
+};
 </script>
   
 <style>
-#no-underline-signup {
-  text-decoration: none;
-  color: white;
-}
-
 #overlay-signup {
   z-index: 10000;
   display: flex;
@@ -290,74 +142,40 @@ onBeforeUnmount(() => {
   z-index: 1000;
   width: 55%;
   box-sizing: border-box;
-  padding: 60px 0;
-  border-radius: 5px;
-  background: rgba(89, 96, 133, 0.50);
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.17);
-  backdrop-filter: blur(8px);
+  padding: 40px 90px 70px 90px;
+  border-radius: 8px;
+  background-color: rgba(0, 14, 31, 0.85);
+  backdrop-filter: blur(16px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 65px;
+  gap: 30px;
   color: white;
   font-family: 'Exo 2', sans-serif;
+  margin-top: 2%;
 }
 
+#form-container-signup form > div,
 #form-container-signup form {
   display: flex;
   flex-direction: column;
-  gap: 65px;
-  width: 70%;
 }
 
-#form-container-signup #next-button,
-#form-container-signup #signup-button,
-#form-container-signup #back {
-  display: flex;
-  padding: 0 70px;
-  height: 70px;
-  font-size: 24px;
-  font-weight: 500;
-  justify-content: center;
-  align-items: center;
+#form-container-signup form {
+  gap: 40px;
+  width: 100%;
 }
 
-#overlay-signup #back,
-#form-container-signup #next-button,
-#form-container-signup #signup-button {
-  border-radius: 8px;
-  background: rgba(255, 121, 0, 0.82);
-  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.17);
-  color: white;
-  transition: 0.5s;
-  font-family: 'Exo 2', sans-serif;
-  cursor: pointer;
-  border: 0;
-}
-
-#form-container-signup #next-button:hover,
-#form-container-signup #signup-button:hover {
-  background-color: #C73814;
-  box-shadow: 0px 0px 10px 1px rgba(138, 164, 218, 0.562);
-}
-
-#overlay-signup #back {
-  background: rgba(20, 53, 117, 0.82);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#overlay-signup #back:hover,
-#form-container-signup #socials button:hover {
-  background-color: #172183;
-  box-shadow: 0px 0px 10px 1px rgba(138, 164, 218, 0.562);
+#form-container-signup form > div {
+  gap: 24px;
 }
 
 #form-container-signup #signup-header {
-  font-size: 36px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 130%;
 }
 
 #form-container-signup .name-inputs input, 
@@ -365,15 +183,17 @@ onBeforeUnmount(() => {
 #form-container-signup #country,
 #form-container-signup .password-input input,
 #form-container-signup #email {
-  font-size: 18px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 700;
   background-color: transparent;
   border: 0;
-  border-bottom: 2px solid white;
-  line-height: 150%;
+  border-bottom: 1px solid white;
+  line-height: 100%;
   width: 100%;
   outline: none;
   color: white;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 #form-container-signup .password-input {
@@ -382,24 +202,17 @@ onBeforeUnmount(() => {
 
 #form-container-signup .password-input img{
   position: absolute;
-  right: 0;
-  bottom: 6px;
+  bottom: 20px;
+  right: 20px;
   filter: invert(100%);
   width: 25px;
+  cursor: pointer;
 }
 
 #form-container-signup .name-inputs {
   display: flex;
   flex-direction: row;
   gap: 20px;
-}
-
-#form-container-signup #country {
-  background-color: transparent;
-  border: 0;
-  border-bottom: 2px solid white;
-  width: 100%;
-  color: white;
 }
 
 #form-container-signup #country:not(:first-of-type) {
@@ -414,36 +227,34 @@ onBeforeUnmount(() => {
 #form-container-signup .buttons-second {
   display: flex;
   flex-direction: row;
-  gap: 70px;
+  gap: 40px;
   justify-content: center;
 }
 
 #form-container-signup #socials {
   display: flex;
   flex-direction: row;
-  gap: 30px;
+  gap: 20px;
 }
 
 #form-container-signup #socials button {
-  padding: 0px 30px;
+  padding: 10px 25px;
   border-radius: 8px;
-  background: rgba(20, 53, 117, 0.82);
-  box-shadow: 0px 4px 16px 1px rgba(0, 0, 0, 0.17);
   display: flex;
   align-items: center;
-  height: 70px;
   cursor: pointer;
   transition: 0.5s;
-  border: 0;
+  background: none;
+  border: 3px solid #054A8B;
 }
 
 #form-container-signup #socials img {
-  height: 30px;
+  height: 25px;
 }
 
 #login-link {
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   text-decoration: none;
 }
 
@@ -453,43 +264,28 @@ onBeforeUnmount(() => {
 }
 
 #login-link-container span {
-  color: #FF7900;
+  color: #FF8C71;
   font-weight: 700;
 }
 
-#signup-page-navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 75px;
-  z-index: 10000;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%);
-  backdrop-filter: blur(6px);
+#signup-button {
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.4);
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  box-sizing: border-box;
+  font-size: 20px;
+  font-weight: 500;
+  justify-content: center;
   align-items: center;
-  padding: 0 120px;
+  line-height: 150%;
+  border-radius: 8px;
   color: white;
+  transition: 0.5s;
   font-family: 'Exo 2', sans-serif;
+  cursor: pointer;
+  width: fit-content;
 }
 
-#signup-page-navbar #logo img {
-  height: 25px;
+#signup-button:hover {
+  box-shadow: 0 0 10px 0 rgba(65, 123, 211, 0.8);
 }
 
-#signup-page-navbar ul {
-  display: flex;
-  flex-direction: row;
-  list-style: none;
-  gap: 3rem;
-}
-
-#bold-text-signup {
-  text-decoration: none;
-  color: rgba(255, 121, 0, 1);
-  font-weight: 700;
-}
 </style>
