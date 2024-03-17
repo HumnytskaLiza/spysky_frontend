@@ -16,7 +16,7 @@ const scene = new THREE.Scene();
 const containerLog = ref(null);
 
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 10;
+camera.position.z = 1.4;
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 
@@ -30,12 +30,12 @@ const material = new THREE.ShaderMaterial({
       fragmentShader,
       uniforms: {
           globeTexture: {
-              value: new THREE.TextureLoader().load('src/assets/textures/daymap.jpg')
+              value: new THREE.TextureLoader().load('src/assets/textures/map.jpg')
           }
       }
   });
 
-const geometry =  new THREE.SphereGeometry(7, 50, 50);
+const geometry =  new THREE.SphereGeometry(1, 30, 30);
 const sphere = new THREE.Mesh(geometry, material)
 
 // --- Creating the atmosphere
@@ -54,7 +54,7 @@ atmosphere.scale.set(1.05, 1.05, 1.05);
 const group = new THREE.Group();
     group.add(sphere);  
     group.add(atmosphere);     
-    group.position.y = -7;
+    group.position.y = -0.95;
 
 function handleWindowResize () {
     const newWidth = window.innerWidth;
