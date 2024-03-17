@@ -16,6 +16,7 @@ import editProfile from './src/pages/settingsPage/editProfile/index.vue';
 import editNotifications from './src/pages/settingsPage/editNotifications/index.vue';
 import editSubscription from './src/pages/settingsPage/editSubscription/index.vue';
 import map from './src/pages/mapPage/index.vue';
+import test from './src/pages/test/index.vue'
 
 const routes = [
   {
@@ -65,6 +66,10 @@ const routes = [
   {
     path: '/3d-map',
     component: map
+  },
+  {
+    path: '/test',
+    component: test
   }
 ];
 
