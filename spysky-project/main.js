@@ -16,7 +16,7 @@ import editProfile from './src/pages/settingsPage/editProfile/index.vue';
 import editNotifications from './src/pages/settingsPage/editNotifications/index.vue';
 import editSubscription from './src/pages/settingsPage/editSubscription/index.vue';
 import ourTools from './src/pages/toolsPage/index.vue';
-import map from './src/pages/test/index.vue'
+import map from './src/pages/mapPage/index.vue'
 
 const routes = [
   {
@@ -82,3 +82,10 @@ const app = createApp(App);
 
 app.use(router);
 app.mount('#app');
+
+
+// router.beforeEach((to, from, next) => {
+//   setTimeout(() => {
+//     next(); 
+//   }, 2000); 
+// });

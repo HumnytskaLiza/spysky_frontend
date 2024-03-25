@@ -28,7 +28,7 @@
             <router-link to="/settings" id="no-underline-dropdown">
               <p>Profile settings</p>
             </router-link>
-            <router-link to="/test" id="no-underline-dropdown">
+            <router-link to="/3d-map" id="no-underline-dropdown">
               <p>3D map</p>
             </router-link>
             <p>Dashboard</p>
@@ -62,25 +62,25 @@ export default {
 </script>
 
 <style>
-#navbar {
-    font-size: 1rem;
-    color: white;
-    font-family: 'Exo 2', sans-serif;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 75px;
-    z-index: 10000;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 100%);
-    backdrop-filter: blur(6px);
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    box-sizing: border-box;
-    align-items: center;
-    padding: 0 150px;
-  }
+  #navbar {
+      font-size: 1rem;
+      color: white;
+      font-family: 'Exo 2', sans-serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 75px;
+      z-index: 10000;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      box-sizing: border-box;
+      align-items: center;
+      padding: 0 150px;
+    }
   
   #navbar #logo img {
     height: 25px;
@@ -120,7 +120,7 @@ export default {
     cursor: pointer;
   }
 
-  #active-nav {
+  #navbar #active-nav {
     color: #FF8C71;
   }
   
@@ -132,7 +132,7 @@ export default {
     color: #FFC8C2;
   }
 
-  #user-dropdown {
+  #navbar #user-dropdown {
     position: absolute;
     padding: 30px 70px 45px 30px;
     background-color: #000E1F;
@@ -140,6 +140,7 @@ export default {
     right: 0;
     display: flex;
     flex-direction: column;
+    width: 220px;
     box-sizing: border-box;
     gap: 30px;
     border-radius: 0.5rem;
@@ -147,30 +148,30 @@ export default {
     transition: opacity 0.3s ease-in-out;
   }
 
-  #user-dropdown.show {
+  #navbar #user-dropdown.show {
     opacity: 1;
   }
 
-  #user-dropdown #logout {
+  #navbar #user-dropdown #logout {
     display: flex;
     flex-direction: row;
     gap: 1rem;
   }
 
-  #user-dropdown hr {
+  #navbar #user-dropdown hr {
     width: 100%;
     border: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 1px;
   }
 
-  #user-dropdown div {
+  #navbar #user-dropdown div {
     display: flex;
     flex-direction: column;
     gap: 1rem;
   }
 
-  #no-underline-dropdown {
+  #navbar #no-underline-dropdown {
     text-decoration: none;
     color: white;
   }
