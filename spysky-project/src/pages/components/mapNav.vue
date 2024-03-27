@@ -84,6 +84,7 @@ export default {
     box-sizing: border-box;
     align-items: center;
     padding: 0 30px;
+    border-bottom: 2px solid #00142D;
   }
   
   #mapNavbar #logo img {
@@ -164,7 +165,6 @@ export default {
     box-sizing: border-box;
     align-items: center;
     padding: 12px 30px;
-    border-top: 2px solid #00142D;
     border-bottom: 2px solid #00142D;
     opacity: 0;
     transition: all 0.3s ease;

@@ -80,6 +80,7 @@ export default {
       box-sizing: border-box;
       align-items: center;
       padding: 0 150px;
+      border-bottom: 2px solid #00142D;
     }
   
   #navbar #logo img {

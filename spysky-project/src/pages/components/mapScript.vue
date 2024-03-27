@@ -54,6 +54,10 @@ sphere.position.set(0, 0, 0)
 
 scene.add(sphere)
 
+function getOrbitControls() {
+    return this.controls;
+}
+
 let id_2;
 
 // Add asteroid

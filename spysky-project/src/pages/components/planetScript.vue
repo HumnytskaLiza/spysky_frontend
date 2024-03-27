@@ -7,7 +7,7 @@
 
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 
-import { onBeforeMount, onBeforeUnmount, onMounted, ref, onUnmounted } from "vue";
+import { onBeforeMount, onMounted, ref, onUnmounted } from "vue";
 
 import gsap from 'gsap';
 import vertexShader from "../../assets/shaders-folder/vertex.glsl";

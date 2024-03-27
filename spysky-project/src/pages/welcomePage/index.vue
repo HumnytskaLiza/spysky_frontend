@@ -29,8 +29,8 @@
     <!--============================= ABOUT US BLOCK =============================-->
 
     <div id="about-us-block">
+      <div id="about-us-background"><img src="../../assets/background-textures/bg-about-us.png" alt=""></div>
       <div id="left-side">
-        <div id="black-cover"></div>
         <img id="junk1" src="../../assets/background-textures/junk1.png">
         <img id="junk2" src="../../assets/background-textures/asteroid1.png">
         <img id="astronaut" src="../../assets/background-textures/astronaut.png">
@@ -41,6 +41,7 @@
           <p class="header-mid">About Us</p>
           <img src="../../assets/icons/about-us.svg" alt="about-us-logo">
         </div>
+        <div id="paragraphs">
         <p>
           The SpySky project allows you to track space debris and detect danger on Earth orbit using NASA open data.
           Thanks to our system, it is possible to determine the level of danger and accumulation of debris.
@@ -49,6 +50,7 @@
           Our product will be relevant for those interested in space and astronomy. The visualization of NASA open data 
           will also help in exploring the Earth and other objects around the Earth. Moreover, it can be helpful for specialists of the space industry.
         </p>
+      </div>
         <router-link to="/about-us" id="no-underline"><button class="fill">More about us</button></router-link>
       </div>
 
@@ -72,7 +74,6 @@
       <div class="our-mission-container">
         <div class="our-goals">
           <div id="goal">
-            <div>
               <div>
                 <div id="bullet">
                 </div>
@@ -81,10 +82,8 @@
               <p>
                 We help to track the movement of space debris and visualize areas with the biggest amount of junk and danger.
               </p>
-            </div>
           </div>
           <div id="goal">
-            <div>
               <div>
                 <div id="bullet">
                 </div>
@@ -94,10 +93,8 @@
                 We detect and display unauthorized objects in space to help in identifying possible threats and incorrect maneuvers, 
                 which will allow taking measures to avoid them.
               </p>
-            </div>
           </div>
           <div id="goal">
-            <div>
               <div>
                 <div id="bullet">
                 </div>
@@ -106,7 +103,6 @@
               <p>
                 We ensure the safety of the satellites from space debris by monitoring and analysis of the space debris movement. 
               </p>
-            </div>
           </div>
         </div>
         <div class="our-mission-decor-container">
@@ -129,7 +125,7 @@
         <div class="block-count">03.</div>
         <div class="header-container">
             <p class="header-mid">SpySky team</p>
-            <img src="../../assets/icons/team.png" alt="spysky-team-logo">
+            <img src="../../assets/icons/team.svg" alt="spysky-team-logo">
         </div>
         <p>
           SpySky team is a dynamic and collaborative group. 
@@ -139,7 +135,6 @@
       </div>
       <div class="team-cards">
         <div>
-          <div>
             <div class="member-photo" id="dasha"></div>
             <div class="all-info">
               <div class="square">
@@ -148,13 +143,12 @@
               <div class="member-info">
                 <p class="team-role">Designer</p>
                 <p class="member-name">Darina Mamokina</p>
-              </div>
+              
             </div>
           </div>
         </div>
 
         <div>
-          <div>
             <div class="member-photo" id="liza"></div>
             <div class="all-info">
               <div class="square">
@@ -164,12 +158,10 @@
                 <p class="team-role">Front-end developer</p>
                 <p class="member-name">Liza Humnytska</p>
               </div>
-            </div>
           </div>
         </div>
 
         <div>
-          <div>
             <div class="member-photo" id="sviat"></div>
             <div class="all-info">
               <div class="square">
@@ -180,11 +172,9 @@
                 <p class="member-name">Sviatoslav Strubytskyi</p>
               </div>
             </div>
-          </div>
         </div>
 
         <div>
-          <div>
             <div class="member-photo" id="taras"></div>
             <div class="all-info">
               <div class="square">
@@ -195,11 +185,9 @@
                 <p class="member-name">Taras Hmaruk</p>
               </div>
             </div>
-          </div>
         </div>
         
         <div>
-          <div>
             <div class="member-photo" id="oleksandr"></div>
             <div class="all-info">
               <div class="square">
@@ -210,11 +198,9 @@
                 <p class="member-name">Oleksandr Prosymiak</p>
               </div>
             </div>
-          </div>
         </div>
 
         <div>
-          <div>
             <div class="member-photo" id="maks"></div>
             <div class="all-info">
               <div class="square">
@@ -225,11 +211,9 @@
                 <p class="member-name">Maksym Kahadii</p>
               </div>
             </div>
-          </div>
         </div>
 
         <div>
-          <div>
             <div class="member-photo" id="anastasia"></div>
             <div class="all-info">
               <div class="square">
@@ -240,11 +224,9 @@
                 <p class="member-name">Anastasia Deineko</p>
               </div>
             </div>
-          </div>
         </div>
 
         <div>
-          <div>
             <div class="member-photo" id="denis"></div>
             <div class="all-info">
               <div class="square">
@@ -255,7 +237,6 @@
                 <p class="member-name">Denis Savenkov</p>
               </div>
             </div>
-          </div>
         </div>
               
       </div>
@@ -361,6 +342,22 @@ export default {
   flex-direction: row;
   gap: 10%;
   position: relative;
+  padding: 110px 0;
+}
+
+#welcome-page #about-us-block #about-us-background {
+  position: absolute;
+  left: -150px;
+  top: 0px; 
+  bottom: 0px;
+  z-index: 0;
+  border-top: 2px solid #00142D;
+  border-bottom: 2px solid #00142D;
+}
+
+#welcome-page #about-us-block #about-us-background img {
+  height: 100%;
+  width: 100vw;
 }
 
 #welcome-page #about-us-block > div {
@@ -369,39 +366,40 @@ export default {
   gap: 25px;
 }
 
+#welcome-page #about-us-block #paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 #welcome-page #about-us-block #left-side {
   width: 50%;
   position: relative;
   display: flex;
 }
 
-#welcome-page #about-us-block #black-cover {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(270deg, #D9D9D9 -1.11%, rgba(0, 0, 0, 0.93) -1.1%, rgba(0, 0, 0, 0.00) 100%);
-  z-index: 500;
-}
-
 #welcome-page #about-us-block #junk1 {
   position: absolute;
-  width: 300px;
+  width: 220px;
   bottom: 0;
   right: 50%;
 }
 
 #welcome-page #about-us-block #junk2 {
   position: absolute;
-  left: 5%;
-  width: 200px;
+  left: 0;
+  width: 130px;
   top: 0;
+  transform: rotate(70deg);
 }
 
 #welcome-page #about-us-block #astronaut {
   position: absolute;
-  width: 550px;
-  right: 0;
+  width: 330px;
+  right: 10%;
   transition: 1s;
   z-index: 1000;
+  cursor: pointer;
 }
 
 #welcome-page #about-us-block #astronaut:hover {
@@ -443,30 +441,20 @@ export default {
 
 #our-mission-block .our-goals #goal {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #03101F;
-  box-sizing: border-box;
-  border-radius: 0.5rem;
-  padding: 0.25rem;
-  transition: 1s;
-  cursor: pointer;
-}
-
-#our-mission-block .our-goals #goal > div {
-  display: flex;
   flex-direction: column;
   gap: 1rem;
-  background: #03101F;
+  background-color: #03101F;
   border-radius: 0.5rem;
   box-sizing: border-box;
   padding: 1.75rem;
+  cursor: pointer;
+  transition: 1s;
+  border: 2px solid #03101F;
 }
 
 #our-mission-block .our-goals #goal:hover {
   transform: translate(40px, 0);
-  background-color: #054A8B;
-  transition: 1s;
+  border: 2px solid #4C5CBC;
 }
 
 #goal #bullet {
@@ -477,13 +465,12 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 4px solid #054A8B;
+  border: 2px solid #4C5CBC;
   transition: 1s;
 }
 
-#our-mission-block .our-goals #goal:hover,
 #our-mission-block .our-goals #goal:hover #bullet {
-  background-color: #054A8B;
+  background-color: #4C5CBC;
 }
 
 
@@ -494,7 +481,7 @@ export default {
   text-transform: uppercase;
 }
 
-#goal > div > div {
+#goal > div {
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -508,7 +495,7 @@ export default {
 .our-mission-decor-container .moon {
   position: absolute;
   right: -600px;
-  top: 50px;
+  top: 20px;
   z-index: 10;
   width: 190%;
 }
@@ -537,9 +524,9 @@ export default {
 
 #quote-block #blue-line {
   align-self: stretch;
-  width: 0.75rem;
+  width: 0.25rem;
   border-radius: 1rem;
-  background: #054A8B;
+  background: #4C5CBC;
 }
 
 /*=========================== SPYSKY TEAM =======================================*/
@@ -558,7 +545,6 @@ export default {
   grid-template-rows: repeat(2, 1fr);
   column-gap: 3rem;
   row-gap: 4.75rem;
-  overflow: hidden;
   box-sizing: border-box;
   width: 100%;
   padding-top: 30px;
@@ -566,33 +552,28 @@ export default {
 }
 
 .team-cards > div {
-  background-color: #054A8B;
+  border: 2px solid #00142D;
   border-radius: 0.5rem;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4px;
   box-sizing: border-box;
   transition: 1s;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .team-cards > div:hover {
-  background-color: #FF8C71;
+  border: 2px solid #FF8C71;
   transform: translate(0, -30px);
   box-shadow: 0px 0px 12.8px 0px rgba(255, 140, 113, 0.55);
 }
 
-.team-cards > div > div {
-  border-radius: 0.5rem;
-  background-color: black;
-  width: 100%;
-  height: 100%;
-}
-
 .team-cards > div .member-photo {
   width: 100%;
-  border-radius: 8px;
-  height: 200px;
+  border-radius: 6px;
+  height: 250px;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -615,7 +596,7 @@ export default {
 }
 
 .team-cards .all-info {
-  margin: 0 1.5rem 1.5rem 2rem;
+  margin: 0 1.5rem 3rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -781,6 +762,8 @@ export default {
   gap: 3rem;
   box-sizing: border-box;
   padding: 150px 0;
+  border-top-right-radius: 2rem;
+  border-top-left-radius: 2rem;
 }
 
 #contact-us-block #short-form {

@@ -88,7 +88,7 @@ height: 40px;
 
 .header-mid {
   font-size: 2.25rem;
-  line-height: 130%;
+  line-height: 100%;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -97,11 +97,12 @@ height: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
+  gap: 0.8rem;
+  height: fit-content;
 }
 
 .header-container img {
-  height: 40px;
+  height: 28px;
 }
 
 .block-header {
@@ -118,13 +119,13 @@ height: 40px;
 }
 
 .fill {
-  background-color: #054A8B;
+  background-color: #4C5CBC;
   border: 0;
   padding: 10px 25px;
 }
 
 .stroke {
-  border: 3px solid #054A8B;
+  border: 3px solid #4C5CBC;
   background: none;
   padding: 8px 25px;
 }
@@ -146,24 +147,24 @@ button {
 }
 
 button:hover {
-  box-shadow: 0 0 10px 0 rgba(65, 123, 211, 0.8);
+  box-shadow: 0 0 10px 0 rgba(48, 62, 144, 0.8);
 }
 
 .fill:hover {
-  background-color: #053C72;
+  background-color: #303E90;
 }
 
 .stroke:hover {
-  border: 3px solid #053C72;
+  border: 3px solid #303E90;
 }
 
 /*==================== ASTEROIDS ========================*/
 
 .hero-container #asteroid1 {
   position: absolute;
-  width: 220px;
+  width: 290px;
   bottom: 5%;
-  right: -10%;
+  right: -20%;
   transform: rotate(50deg);
   transition: 2s;
 }
@@ -175,22 +176,22 @@ button:hover {
 
 .hero-container #asteroid2 {
   position: absolute;
-  width: 300px;
-  bottom: 35%;
+  width: 280px;
+  bottom: 50%;
   right: -70%;
   transition: 2s;
 }
 
 .hero-container #asteroid2:hover {
-  transform: rotate(20deg);
+  transform: rotate(10deg);
   right: -65%;
 }
 
 .hero-container #asteroid3 {
   position: absolute;
-  width: 110px;
+  width: 90px;
   top: 10%;
-  right: -15%;
+  right: -10%;
   transform: rotate(60deg);
   transition: 2s;
 }

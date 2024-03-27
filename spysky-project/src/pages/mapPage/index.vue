@@ -12,7 +12,7 @@
             <div>
               <p>Search</p>
               <select id="satellite-names" size="1" onfocus="this.size = 2" onchange="this.blur()" onblur="this.size = 1; this.blur()">
-                <option>Option 1</option>
+                <option disabled selected>Satellite name</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
                 <option>Option 4</option>
@@ -20,7 +20,7 @@
                 <option>Option 6</option>
               </select>
               <select id="object-ids" size="1" onfocus="this.size = 2" onchange="this.blur()" onblur="this.size = 1; this.blur()">
-                <option>Option 1</option>
+                <option disabled selected>Object ID</option>
                 <option>Option 2</option>
                 <option>Option 3</option>
                 <option>Option 4</option>
@@ -30,8 +30,8 @@
             <div>
               <p>Object type</p>
               <select id="object-types" size="1" onfocus="this.size = 2" onchange="this.blur()" onblur="this.size = 1; this.blur()">
-                <option>Option 1</option>
-                <option>Option 2</option>
+                <option>Satellite</option>
+                <option>Debris</option>
               </select>
             </div>
             <div>
@@ -40,10 +40,14 @@
             </div>
           </div>
         </div>
-        <div>
+        <div id="right-bottom-elems">
           <div class="scale-buttons">
-            <div>+</div>
-            <div>-</div>
+            <div id="zoomOut" @click="zoomOut()"><img src="../../assets/icons/minus.svg" alt=""></div>
+            <div id="zoomIn" @click="zoomIn()"><img src="../../assets/icons/plus.svg" alt=""></div>
+          </div>
+          <div id="coordinates">
+            <p id="lat">lat: 50.450001</p>
+            <p id="long">long: 30.523333</p>
           </div>
         </div>
       </div>
@@ -70,8 +74,21 @@ export default {
       } else {
         filters.classList.toggle("show");
       }
-  }
-  }
+  },
+    // zoomOut() {
+    //   const controls = 
+    //   controls.zoomOut();
+    // },
+    // zoomIn() {
+    //   controls.zoomIn();
+    // }
+  },
+  // data: {
+  //               coordinates: {
+  //                   lat: 50.450001,
+  //                   long: 30.523333
+  //               }
+  //           }
 }
   
 </script>
@@ -159,16 +176,19 @@ export default {
   border-radius: 0.5rem;
   width: 10px;
   border: 2px solid #00142D;
+  transition: width 0.3s ease-in-out;
 }
 
 #filters.show {
   width: 350px;
   padding: 20px 20px 30px 20px;
+  transition: width 0.3s ease-in-out;
 }
 
 #filters.show * {
   visibility: visible; 
   width: 100%;
+  transition: visibility 0s linear;
 }
 
 #filters.show #arrow img {
@@ -212,6 +232,48 @@ export default {
   width: 11px;
   height: 13px;
   visibility: visible;
+}
+
+#right-bottom-elems {
+  font-family: 'Exo 2', sans-serif;
+  font-size: 14px;
+  position: absolute;
+  color: white;
+  bottom: 30px;
+  z-index: 10000;
+  right: 30px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#right-bottom-elems #coordinates {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
+#right-bottom-elems .scale-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+#right-bottom-elems .scale-buttons div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #00142D;
+  border-radius: 0.5rem;
+}
+
+#right-bottom-elems .scale-buttons div img {
+  height: auto;
+  width: 1rem;
 }
 
 </style>
