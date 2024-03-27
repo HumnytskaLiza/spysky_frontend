@@ -1,12 +1,13 @@
 <template>
         <div id="model-container-welcome" ref="containerWelcome"></div>
+        
 </template>
     
 <script setup>
 
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 
-import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
+import { onBeforeMount, onMounted, ref, onUnmounted } from "vue";
 
 import gsap from 'gsap';
 import vertexShader from "../../assets/shaders-folder/vertex.glsl";
@@ -63,6 +64,8 @@ const mouse = {
         y: 0
 };
 
+let id;
+
 function handleWindowResize () {
     const newWidth = window.innerWidth;
     const newHeight = window.innerHeight;
@@ -78,8 +81,6 @@ function handleWindowResize () {
 }
 
 onBeforeMount(() => {
-window.addEventListener('resize', handleWindowResize);
-
 addEventListener('mousemove', (event) => {
         mouse.x = (event.clientX / innerWidth) * 2 - 1
         mouse.y = -(event.clientY / innerHeight) * 2 - 1
@@ -89,6 +90,7 @@ handleWindowResize();
 })
 
 onMounted(() => {
+    console.log("I was called")
     containerWelcome.value = document.getElementById('model-container-welcome');
 
     containerWelcome.value.style.width = "100vw";
@@ -109,9 +111,9 @@ onMounted(() => {
     renderer.setPixelRatio(window.devicePixelRatio);
 
     containerWelcome.value.appendChild(renderer.domElement);
-
+    
     function animate() {
-        requestAnimationFrame(animate);
+        id = requestAnimationFrame( animate );
         renderer.render(scene, camera);
         sphere.rotation.y += 0.002;
         group.rotation.y = mouse.x * 0.5;
@@ -122,34 +124,122 @@ onMounted(() => {
         })
     }
     animate();
-
     window.addEventListener('resize', handleWindowResize);
 });
 
-onBeforeUnmount(() => { 
+
+// window.cancelAnimationFrame(this.animationFrameId);
+
+
+function removeObject(obj) {
+    if (obj.geometry) obj.geometry.dispose();
+    if (obj.material) obj.material.dispose();
+    if (obj.children.length) obj.children.forEach(removeObject);
+    }
+
+
+onUnmounted(() => { 
+  window.cancelAnimationFrame(id);
+
+  scene.dispose();
+  backgroundTexture.dispose(); // Dispose background texture
+  material.uniforms.globeTexture.value.dispose(); // Dispose texture from material
+
+  // Clear canvas (optional)
+  renderer.domElement.width = 0;
+  renderer.domElement.height = 0;
+
+
+
+    removeObject(sphere)
+    removeObject(atmosphere)
+    scene.remove(group);
+    // sphere.material.dispose();
+    // sphere.geometry.dispose();
+
+    // atmosphere.material.dispose();
+    // atmosphere.geometry.dispose();
+
+    // scene.remove(group);
+
+    // material.dispose();
+
+    // material_atmosphere.dispose();
+
+    // geometry.dispose();
+
+    // scene.background.dispose();
+    // scene.remove(camera);
+
+    // renderer.dispose();
+    // scene.dispose();
+
     
+
+    if (containerWelcome.value) {
+        containerWelcome.value.removeChild(renderer.domElement);
+    }
+    window.removeEventListener('resize', handleWindowResize);
+});
+
+
+
+
+function cleanupThreeScene() {
+    console.log("Button was called");
+    window.cancelAnimationFrame(id);
+
+
     sphere.material.dispose();
     sphere.geometry.dispose();
 
     atmosphere.material.dispose();
     atmosphere.geometry.dispose();
 
-    scene.remove(group);
-
-    material.dispose();
-
-    material_atmosphere.dispose();
-
     geometry.dispose();
 
+    material.dispose();
+    material_atmosphere.dispose();
+
+    backgroundTexture.dispose();
     scene.background.dispose();
-    scene.remove(camera);
-
     renderer.dispose();
-    scene.dispose();
+    scene.remove(camera);
+    material.uniforms.globeTexture.value.dispose();
 
-    containerWelcome.value.removeChild(renderer.domElement);
+    
+
+    renderer.domElement.width = 0;
+    renderer.domElement.height = 0;
+
+    scene.remove(group);
+
+
+    // atmosphere.material.dispose();
+    // atmosphere.geometry.dispose();
+
+    // scene.remove(group);
+
+    // material.dispose();
+
+    // material_atmosphere.dispose();
+
+    // geometry.dispose();
+
+    // scene.background.dispose();
+    // scene.remove(camera);
+
+    // renderer.dispose();
+    // scene.dispose();
+
+    
+
+    if (containerWelcome.value) {
+        containerWelcome.value.removeChild(renderer.domElement);
+    }
+    scene.dispose();
     window.removeEventListener('resize', handleWindowResize);
-});
+}
+
 
 </script>

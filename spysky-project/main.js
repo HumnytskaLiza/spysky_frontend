@@ -15,7 +15,8 @@ import contacts from './src/pages/contactsPage/index.vue';
 import editProfile from './src/pages/settingsPage/editProfile/index.vue';
 import editNotifications from './src/pages/settingsPage/editNotifications/index.vue';
 import editSubscription from './src/pages/settingsPage/editSubscription/index.vue';
-import map from './src/pages/mapPage/index.vue';
+import ourTools from './src/pages/toolsPage/index.vue';
+import map from './src/pages/mapPage/index.vue'
 
 const routes = [
   {
@@ -63,6 +64,10 @@ const routes = [
     component: editSubscription
   },
   {
+    path: '/our-tools',
+    component: ourTools
+  },
+  {
     path: '/3d-map',
     component: map
   }
@@ -77,3 +82,10 @@ const app = createApp(App);
 
 app.use(router);
 app.mount('#app');
+
+
+// router.beforeEach((to, from, next) => {
+//   setTimeout(() => {
+//     next(); 
+//   }, 2000); 
+// });

@@ -44,7 +44,7 @@
       </form>
     </div>
   </div>
-  <planet2Model />
+  <!-- <planet2Model /> -->
 </template>
 
 <script>

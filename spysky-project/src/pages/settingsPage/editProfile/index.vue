@@ -222,7 +222,7 @@
     background-color: #011932;
   }
 
-  .links button > div{
+  .links button > div {
     display: flex;
     flex-direction: row;
     gap: 1rem;

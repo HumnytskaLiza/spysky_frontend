@@ -5,67 +5,64 @@
 <script setup>
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-import { onBeforeMount, onBeforeUnmount, onMounted, ref } from "vue";
+import { onBeforeMount, onUnmounted, onMounted, onBeforeUnmount, ref } from "vue";
 import { OBJLoader } from 'three/addons/loaders/OBJLoader.js';
 import { MTLLoader } from 'three/addons/loaders/MTLLoader.js';
-
-import vertexShader from "../../assets/shaders-folder/vertex.glsl";
-import fragmentShader from "../../assets/shaders-folder/fragment.glsl";
-import atmosphereVertexShader from "../../assets/shaders-folder/atmosphereVertex.glsl";
-import atmosphereFragmentShader from "../../assets/shaders-folder/atmosphereFragment.glsl";
-
 
 const scene = new THREE.Scene();
 const containerMap = ref(null);
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.z = 5;
 
-
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 
+const controls = new OrbitControls( camera, renderer.domElement );
+controls.enablePan = false;
+controls.update();
 
-const backgroundTexture = new THREE.TextureLoader().load('src/assets/textures/bg_high.jpg');
+const light = new THREE.AmbientLight( 0xffffff, 0.2 ); 
+scene.add( light );
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9);
+directionalLight.position.x = -30;
+directionalLight.position.y = 35;
+directionalLight.position.z = 55;
+
+directionalLight.target.position.x = 0;
+directionalLight.target.position.y = 0;
+directionalLight.target.position.z = 0;
+
+scene.add(directionalLight);
+scene.add(directionalLight.target);
+
+const backgroundTexture = new THREE.TextureLoader().load('src/assets/textures/bg_high.png');
 const spaceMaterial = new THREE.MeshBasicMaterial({ map: backgroundTexture, side: THREE.DoubleSide });
 const spaceGeometry = new THREE.SphereGeometry(800, 32, 32);
 
 const space = new THREE.Mesh(spaceGeometry, spaceMaterial);
 scene.add(space);
 
+const mapEarth = new THREE.TextureLoader().load('src/assets/textures/earth.png');
+const bump = new THREE.TextureLoader().load('src/assets/textures/bump.png');
 
-const controls = new OrbitControls( camera, renderer.domElement );
-controls.update();
-
-const light = new THREE.AmbientLight( 0x404040 ); 
-scene.add( light );
-
-// --- Creating the Earth and Atmosphere ---
-
-const material = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms: {
-        globeTexture: {
-            value: new THREE.TextureLoader().load('src/assets/textures/earth.png')
-        }
-    }
-});
-
+const earthMaterial = new THREE.MeshPhongMaterial({ map: mapEarth, bumpMap: bump, bumpScale: 0.05 });
 
 const geometry =  new THREE.SphereGeometry(1, 50, 50);
-const sphere = new THREE.Mesh(geometry, material);
+const sphere = new THREE.Mesh(geometry, earthMaterial);
 
-const material_atmosphere = new THREE.ShaderMaterial({
-        vertexShader: atmosphereVertexShader,
-        fragmentShader: atmosphereFragmentShader,
-        blending: THREE.AdditiveBlending,
-        side: THREE.BackSide
-    });
+sphere.position.set(0, 0, 0)
 
-const atmosphere = new THREE.Mesh(geometry, material_atmosphere)
-atmosphere.scale.set(1, 1, 1);
+scene.add(sphere)
+
+function getOrbitControls() {
+    return this.controls;
+}
+
+let id_2;
 
 // Add asteroid
+let asteroidsGroup = [];
+
 function addAsteroid(x, y, z) {
     
     let mtlLoader = new MTLLoader();
@@ -79,10 +76,10 @@ function addAsteroid(x, y, z) {
             object.position.set(x, y, z);
             object.scale.set(0.0002, 0.0002, 0.0002);
             scene.add(object);
+
+            asteroidsGroup.push(object);
         });
     })
-
-
 
     // let lat = (90 - latRaw) * (Math.PI/180);
     // let lng = (lngRaw + 180) * (Math.PI/180);
@@ -92,18 +89,34 @@ function addAsteroid(x, y, z) {
     // let z = (Math.cos(lat))
   }
 
-  const group = new THREE.Group();
-      group.add(sphere);  
-      group.add(atmosphere);     
-      group.position.y = 0;
-      group.position.x = 0;
-      group.position.z = 0;
+// Add satellite
+let satellitesGroup = [];
 
+function addSatellite(x, y, z) {
+    
+    let mtlLoader = new MTLLoader();
+    mtlLoader.load('./src/assets/textures/Satellite.mtl', function(materials) {
+        materials.preload();
 
-const mouse = {
-        x: 0,
-        y: 0
-};
+        let loader = new OBJLoader();
+        // loader.setMaterials(materials);
+
+        loader.load('./src/assets/objects/Satellite.obj', function(object){
+            object.position.set(x, y, z);
+            object.scale.set(0.1, 0.1, 0.1);
+            scene.add(object);
+
+            satellitesGroup.push(object);
+        });
+    })
+
+    // let lat = (90 - latRaw) * (Math.PI/180);
+    // let lng = (lngRaw + 180) * (Math.PI/180);
+
+    // let x = -(Math.sin(lat)*Math.cos(lng));
+    // let y = (Math.sin(lat)*Math.sin(lng));
+    // let z = (Math.cos(lat))
+  }
 
 function handleWindowResize () {
     const newWidth = window.innerWidth;
@@ -121,12 +134,6 @@ function handleWindowResize () {
 
 onBeforeMount(() => {
 window.addEventListener('resize', handleWindowResize);
-
-addEventListener('mousemove', (event) => {
-        mouse.x = (event.clientX / innerWidth) * 2 - 1
-        mouse.y = -(event.clientY / innerHeight) * 2 - 1
-    })
-
 handleWindowResize();
 })
 
@@ -153,7 +160,10 @@ onMounted(() => {
     addAsteroid(-1.1, -0.53, -0.75)
     addAsteroid(0.5, 0.5, 0.75)
 
-    scene.add(group);
+    addSatellite(0.7, 0.7, 0.7)
+    addSatellite(-0.7, -0.7, 0.7)
+    addSatellite(-0.7, 0.8, 1)
+
 
     renderer.setSize(w, h);
     renderer.setPixelRatio(window.devicePixelRatio);
@@ -161,39 +171,101 @@ onMounted(() => {
     containerMap.value.appendChild(renderer.domElement);
 
     function animate() {
-        requestAnimationFrame(animate);
+        id_2 = requestAnimationFrame(animate);
+       
         renderer.render(scene, camera);
         controls.update();
     }
     animate();
-
     window.addEventListener('resize', handleWindowResize);
 });
 
-onBeforeUnmount(() => { 
+
+function removeObject(obj) {
+    if (obj.geometry) obj.geometry.dispose();
+    if (obj.material) obj.material.dispose();
+    if (obj.children.length) obj.children.forEach(removeObject);
+    }
+
+onUnmounted(() => {  
+    window.cancelAnimationFrame(id_2);
+
+    scene.dispose();
+    backgroundTexture.dispose();
+
+    renderer.domElement.width = 0;
+    renderer.domElement.height = 0;
+
+    removeObject(sphere)
+    removeObject(light)
+    removeObject(directionalLight)
+
+    window.removeEventListener('resize', handleWindowResize);
+
+    for (let i = 0; i < asteroidsGroup.length; i++) {
+        removeObject(asteroidsGroup[i]);
+    }
+
+    for (let i = 0; i < satellitesGroup.length; i++) {
+        scene.remove(satellitesGroup[i]);
+    }
+
+    asteroidsGroup = [];
+    satellitesGroup = [];
     
-    sphere.material.dispose();
-    sphere.geometry.dispose();
+    if (scene.backgroundTexture) {
+        scene.backgroundTexture.dispose();
+    }
 
-    atmosphere.material.dispose();
-    atmosphere.geometry.dispose();
-
-    scene.remove(group);
-
-    material.dispose();
-
-    material_atmosphere.dispose();
-
-    geometry.dispose();
-
-    scene.background.dispose();
     scene.remove(camera);
 
     renderer.dispose();
     scene.dispose();
 
-    containerMap.value.removeChild(renderer.domElement);
-    window.removeEventListener('resize', handleWindowResize);
+    if (containerMap.value) {
+        containerMap.value.removeChild(renderer.domElement);
+    }
 });
+
+function cleanupThreeScene() {
+    window.cancelAnimationFrame(id_2);
+
+    scene.dispose();
+    backgroundTexture.dispose();
+
+    renderer.domElement.width = 0;
+    renderer.domElement.height = 0;
+
+    removeObject(sphere)
+    removeObject(light)
+    removeObject(directionalLight)
+
+    window.removeEventListener('resize', handleWindowResize);
+
+    for (let i = 0; i < asteroidsGroup.length; i++) {
+        removeObject(asteroidsGroup[i]);
+    }
+
+    for (let i = 0; i < satellitesGroup.length; i++) {
+        scene.remove(satellitesGroup[i]);
+    }
+
+    asteroidsGroup = [];
+    satellitesGroup = [];
+
+    if (scene.backgroundTexture) {
+        scene.backgroundTexture.dispose();
+    }
+
+    scene.remove(camera);
+
+    renderer.dispose();
+    scene.dispose();
+
+    if (containerMap.value) {
+        containerMap.value.removeChild(renderer.domElement);
+    }
+}
+
 
 </script>
